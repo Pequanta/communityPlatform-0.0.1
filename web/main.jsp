@@ -9,9 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Home</title>
+        <link rel="stylesheet" type="text/css" href="styles.css" />
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <a href="signin.jsp">Sign In</a>
+        <a href="signup.jsp">Sign Up</a>
+        <a href="home.jsp">Home</a>
     </body>
 </html>

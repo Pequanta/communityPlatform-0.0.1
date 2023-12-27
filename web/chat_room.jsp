@@ -1,6 +1,8 @@
+
+
 <%-- 
-    Document   : chat_room
-    Created on : Dec 20, 2023, 10:01:43 PM
+    Document   : main
+    Created on : Dec 20, 2023, 2:31:34 AM
     Author     : quantap
 --%>
 
@@ -9,10 +11,56 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Chat Room</title>
-        <link rel="stylesheet" type="text/css" href="assets/styles.css" />
+        <title>ChatRoom</title>
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        
     </head>
-    <body>
-        <h1>Hello World!</h1>
+    
+    <body class="chat_body">
+      <center>
+            <header class="header">
+                <nav>
+                    <%
+                        String[] links = {"home.jsp", "publication_page.jsp" , "chat_room.jsp", "Resources.jsp"};
+                        String[] pageNames = {"Home", "Publication", "Discussion", "Resources"};
+                        for(int j = 0; j < links.length;j++){
+                    %>
+                    <a href=<%=links[j]%>><%=pageNames[j] %></a>
+                    <%
+                        }
+                    %>
+                </nav>
+            </header>
+            
+            <h1>Chat Room</h1>
+            <div class="chat_box">
+                <div class="chat_display">
+                    <div class="sent_m">
+                        <%
+                            String updatedData = (String) request.getAttribute("sentMessage");
+                            out.print(updatedData);                        
+                        %>  
+                    </div>
+                </div>
+                <form action="SendMessageServlet">
+                    <input type="text" name="message" class="message_box"/>
+                    <input type="submit" name="send"  value="send" class="send_message"/>
+                </form>
+            </div>
+            <div class="users_box">
+                <h2>Users</h2>
+                <%
+                    // Assuming you have a list of labels or an array
+                    String[] users = {"user 1", "user 2", "user 3", "user 4","user 5"};
+
+                    // Loop through the labels and generate HTML
+                    for (int i = 0; i < 100;i++) {
+                %>
+                        <label><%= users[i % users.length] %></label><br>
+                <%
+                    }
+                %>
+            </div>
+      </center>
     </body>
 </html>

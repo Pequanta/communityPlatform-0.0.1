@@ -1,6 +1,6 @@
 <%-- 
-    Document   : publication_page
-    Created on : Dec 20, 2023, 10:01:30 PM
+    Document   : Resources
+    Created on : Dec 24, 2023, 8:26:52 AM
     Author     : quantap
 --%>
 
@@ -9,10 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Publication</title>
+        <title>Resources</title>
         <link rel="stylesheet" type="text/css" href="styles.css" />
     </head>
-    <body>
+    <body class="resource_body">
         <center>
             <header class="header">
                 <nav>
@@ -27,7 +27,8 @@
                     %>
                 </nav>
             </header>
-            <h1>Publication</h1>
+            
+            <h1>Resource Page</h1>
         </center>
     </body>
 </html>

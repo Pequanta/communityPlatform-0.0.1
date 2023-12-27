@@ -9,9 +9,47 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Sign Up</title>
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        
     </head>
-    <body>
-        <h1>Hello World!</h1>
+    <body class="signup sign_page">
+        <%
+            String[] formEntries = {"User Name", "Institute","Email", "Education Level", "password"};
+            String[] formNames = {"uname", "institute", "email", "education_level","password"};
+        %>
+        <center>
+            <div class="signing signup">
+                    <form action="RegisterUser">
+                        <h1>Community Platform EEEE</h1>
+                        <table id="table">
+                            <% 
+                                for(int a = 0; a < formEntries.length;a++){
+                                    if(formEntries[a] == "password"){
+                            %>
+                                        <tr>
+                                            <td><label><%=formEntries[a] %></label></td>
+                                            <td><input type="password" name=<%=formNames[a]%> /></td> 
+
+                                        </tr>
+                            <%
+                                continue;
+                                }
+                            %>
+                                    <tr>
+                                        <td><label><%=formEntries[a] %></label></td>
+                                        <td><input type="text" name=formNames[a] /></td> 
+
+                                    </tr>
+                             <%
+                                 }
+                             %>
+                            <tr><td><input type="submit" name="signup" value="signup"/></td></tr>
+                        </table>
+                        <a href="signin.jsp">Sign in</a>
+                    </form>
+
+            </div>
+    </center>
     </body>
 </html>
