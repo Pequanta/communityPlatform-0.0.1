@@ -79,7 +79,7 @@ public class DataBasePublicationQueries {
         return null;
     }
     public Publication publicationInfo(String publication_content){
-        String userInfoStatement = "SELECT * FROM publication_table WHERE UPPER(message_content) = '" + messageContent.toUpperCase()+"'";
+        String userInfoStatement = "SELECT * FROM publication_table WHERE UPPER(message_content) = '" + publication_content.toUpperCase()+"'";
         try{
             resultCont = statementInst.executeQuery(userInfoStatement);
             if(resultCont.next()){
@@ -111,17 +111,11 @@ public class DataBasePublicationQueries {
         Publication pub3 = new Publication("Someone6@gmail.com", "We can Use Quantum Computing to implement algorithms that are cost in nature", "11:30", "Time complex Algorithms");
         Publication pub4 = new Publication("Penielyohannes6@gmail.com", "Physics is study of nature", "11:30", "Physics");
         Publication pub5 = new Publication("Someone@gmail.com", "Study what ever u want!", "11:30", "Study Choice");
-//        System.out.println(inst.addChat(chat));
-//        System.out.println(inst.addChat(chat2));
-//        System.out.println(inst.addChat(chat3));
-//        System.out.println(inst.addChat(chat4));
-//        System.out.println(inst.addChat(chat3));
-//        System.out.println(inst.addChat(chat5));
-//        System.out.println(inst.addPublication(pub));
-//        System.out.println(inst.addPublication(pub2));
-//        System.out.println(inst.addPublication(pub3));
-//        System.out.println(inst.addPublication(pub4));
-//        System.out.println(inst.addPublication(pub5));
+        System.out.println(inst.addPublication(pub));
+        System.out.println(inst.addPublication(pub2));
+        System.out.println(inst.addPublication(pub3));
+        System.out.println(inst.addPublication(pub4));
+        System.out.println(inst.addPublication(pub5));
         ArrayList<String> cont = inst.allPublications();
         for(int i = 0;i < cont.size();i++){
             System.out.println(cont.get(i));

@@ -30,7 +30,7 @@ body{
     border-radius: 5%;
     font-size: 100px;
     font-weight: 400;
-    border-radius: 20%;
+    border-radius: 10%;
     overflow: auto;
 }
 .chat_box{
@@ -48,8 +48,6 @@ body{
     font-weight: 400;
     border-radius: 20%;
     overflow: auto;
-    margin-top: 60px;
-    
 }
 .message_box{
     width: 50%;
@@ -95,5 +93,12 @@ body{
     bottom: 0;
     margin-bottom: 100px;
     margin-left:200px;
+    border-radius: 10%;
+}
+
+.user_disp{
+    width: 90%;
+    height: 80px;
+    background-color:#80c1ff;
     border-radius: 10%;
 }

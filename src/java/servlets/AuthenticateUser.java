@@ -5,12 +5,16 @@
 package servlets;
 import databaseHandlers.DataBaseInformationQueries;
 import dataContainers.UserInfo;
+import databaseHandlers.CreateConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.sql.Connection;
+import java.sql.DriverManager;
 //import org.apache.commons.dbcp2.BasicDataSource;
 /**
  *
@@ -28,53 +32,39 @@ public class AuthenticateUser extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-           DataBaseInformationQueries dataQuery = new DataBaseInformationQueries();
-           PrintWriter out = response.getWriter();
-            String[] name = request.getParameter("uname").split(" ");
-            String userName =name[0],
-                    lastName = name[0],
-                    email = request.getParameter("email"),
-                    institute = request.getParameter("institute"),
-                    password = request.getParameter("password");
-            int education_level = Integer.parseInt(request.getParameter("education_level"));
-            UserInfo userData = new UserInfo(userName, lastName, institute, email, password,  education_level);
-            UserInfo contInfo = dataQuery.userInfo(email);
-            out.println("<h1>" + userData.getFname() + "</h1>");
-            out.println("<h1>" + userData.getLname() + "</h1>");
-            out.println("<h1>" + userData.getEmail() + "</h1>");
-            out.println("<h1>" + userData.getInstitute() + "</h1>");
-            out.println("<h1>" + userData.getPassword() + "</h1>");
+            throws ServletException, IOException{
+            PrintWriter out = response.getWriter();
+            String userName = request.getParameter("uname"), 
+                    userInstitute = request.getParameter("institute"),
+                    userEmail = request.getParameter("email"),
+                    userEducationLevel = request.getParameter("education_level"),
+                    userPassword = request.getParameter("password");
+            String[] userFullName = userName.split(" ");
             try{
-                out.println("<h1>" + dataQuery.userInfo("Penielyohannes6@gmail.com") + "</h1>");
+                UserInfo userData = new UserInfo(userFullName[0], userFullName[1],userInstitute, userEmail, userPassword, Integer.parseInt(userEducationLevel));
+                CreateConnection instCon = new CreateConnection();
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
+                DataBaseInformationQueries inst = new DataBaseInformationQueries(cont);
+                if(inst.checkUserExist(userData) && inst.userInfo(userEmail).getPassword().equals(userPassword)){
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("person" , userData);
+                    response.sendRedirect("home.jsp");
+                }else{
+                    out.println("<h1> User doesn't exist</h1>");
+                }
+                
+                
+                
             }catch(Exception e){
-                out.println("<h1>faield</h1>");
                 e.printStackTrace();
             }
             
-           try{
-               if(dataQuery.con.isClosed()){
-                    out.println("____" + contInfo.getEmail());
-                    out.println("<h1>" + userData.getFname() + "</h1>");
-                    out.println("<h1>" + userData.getLname() + "</h1>");
-                    out.println("<h1>" + userData.getEmail() + "</h1>");
-                    out.println("<h1>" + userData.getInstitute() + "</h1>");
-                    out.println("<h1>" + userData.getPassword() + "</h1>");
-                    out.println("<h1> -----------------------------</h1>");
-                    out.println("<h1>" +contInfo.getFname() + "</h1>");
-                    out.println("<h1>" + contInfo.getLname() + "</h1>");
-                    out.println("<h1>" + contInfo.getEmail() + "</h1>");
-                    out.println("<h1>" + contInfo.getInstitute() + "</h1>");
-                    out.println("<h1>" + contInfo.getPassword() + "</h1>");
-                    if(userData.getPassword().equals(dataQuery.userInfo(userData.getEmail()).getPassword())){
-                        response.sendRedirect("home.jsp");
-                    }
-                }
-            }catch(Exception e){
-                out.println("<h1 hey there</h1>");
-                e.printStackTrace();
-           
-        }
+//            try{
+//                
+//            }catch(Exception e){
+//            }
+//            
     }
         @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

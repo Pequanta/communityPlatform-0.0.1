@@ -17,14 +17,10 @@ public class DataBaseInformationQueries {
     Statement statementInst;
     ResultSet resultCont;
     public Connection con;
-    public DataBaseInformationQueries(){
-        CreateConnection conInfo = new CreateConnection(); 
-        try{
-            con = DriverManager.getConnection(conInfo.getUrl() + conInfo.getDatabase(),  conInfo.getUser(), conInfo.getPassword());
-            statementInst = con.createStatement();
-            System.out.println("Connected");
-        }catch(SQLException e){
-        }
+    public DataBaseInformationQueries(Connection con) throws SQLException{
+        this.con = con;
+        statementInst = con.createStatement();
+        System.out.println("Connected");
         
     }
     public boolean addUser(UserInfo userData){
@@ -79,18 +75,5 @@ public class DataBaseInformationQueries {
         }
         return rows > 0;
     }
-//    public static void main(String[] args){
-//        DataBaseInformationQueries inst = new DataBaseInformationQueries();
-//        //UserInfo userInst = new UserInfo("Walelign", "Tagesse","AAiT", "walelign@gmail.com", "asdf", 1);
-//        UserInfo userInst1 = new UserInfo("Peniel", "Peniel","AAiT", "Penielyohannes6@gmail.com", "asdf", 0);
-//        //System.out.println(inst.addUser(userInst1));
-//        //System.out.println(inst.userInfo(userInst1.getEmail()).getPassword());
-//        System.out.println(inst.userInfo("Penielyohannes6@gmail.com").getEmail());
-//        System.out.println(inst.userInfo("Penielyohannes6@gmail.com").getFname());
-//        System.out.println(inst.checkUserExist((userInst1)));
-//        //System.out.println(inst.removeUser(userInst1));
-//        
-//        
-//    }
     
 }

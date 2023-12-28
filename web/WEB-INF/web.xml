@@ -12,6 +12,10 @@
         <servlet-name>SendMessageServlet</servlet-name>
         <servlet-class>servlets.SendMessageServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PublishServlet</servlet-name>
+        <servlet-class>servlets.PublishServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterUser</servlet-name>
         <url-pattern>/RegisterUser</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>SendMessageServlet</servlet-name>
         <url-pattern>/SendMessageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PublishServlet</servlet-name>
+        <url-pattern>/PublishServlet</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>main.jsp</welcome-file>

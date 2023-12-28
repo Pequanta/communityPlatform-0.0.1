@@ -48,15 +48,15 @@
                 </form>
             </div>
             <div class="users_box">
-                <h2>Users</h2>
+                <label>Users</label>
                 <%
                     // Assuming you have a list of labels or an array
-                    String[] users = {"user 1", "user 2", "user 3", "user 4","user 5"};
+                    String[] users = {"user1", "user2", "user3", "user4","user5"};
 
                     // Loop through the labels and generate HTML
                     for (int i = 0; i < 100;i++) {
                 %>
-                        <label><%= users[i % users.length] %></label><br>
+                        <div class="user_disp"><%= users[i % users.length] %></div>
                 <%
                     }
                 %>

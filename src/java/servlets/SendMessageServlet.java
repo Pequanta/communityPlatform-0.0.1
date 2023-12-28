@@ -4,6 +4,11 @@
  */
 package servlets;
 
+import dataContainers.ChatInfo;
+import dataContainers.UserInfo;
+import databaseHandlers.CreateConnection;
+import databaseHandlers.DataBaseDiscussionQueries;
+import databaseHandlers.DataBaseInformationQueries;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,6 +16,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.*;
 
 /**
  *
@@ -29,11 +37,36 @@ public class SendMessageServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("chat_room.jsp");
+        
         response.setContentType("text/html;charset=UTF-8");
-        String newMessage = request.getParameter("message");
-        request.setAttribute("sentMessage", newMessage +"\n");
-        dispatcher.forward(request, response);
+       
+        try{
+                PrintWriter out = response.getWriter();
+                String newMessage = request.getParameter("message");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("chat_room.jsp");
+                CreateConnection instCon = new CreateConnection();
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
+                DataBaseDiscussionQueries inst = new DataBaseDiscussionQueries(cont);
+                
+                
+                UserInfo senderInfo = (UserInfo) request.getSession().getAttribute("person");
+                out.println("<h1> Hello world </h1>");
+                out.println("<h1>" + senderInfo.getEmail() +"</h1>");
+                ChatInfo chatInfo = new ChatInfo(senderInfo.getEmail(), newMessage, "11:30");
+                
+                inst.addChat(chatInfo);
+                String contMessage = "";
+                ArrayList contMessageList = inst.allMessages();
+                for(int i = 0; i < contMessageList.size();i++){
+                    contMessage += contMessageList.get(i);
+                }
+                out.println("<h1>" + contMessage+"</h1>");
+                request.setAttribute("sentMessage", contMessage +"\n");
+                dispatcher.forward(request, response);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         
     }
 

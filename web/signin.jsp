@@ -17,7 +17,7 @@
             <div class="signing signin">
                     <%
                         String[] formEntries = {"User Name", "Institute","Email", "Education Level","password"};
-                        String[] formNames = {"uname", "institute", "email", "education_level", "password"};
+                        String[] formNames = {"uname", "institute", "email", "education_level","password"};
                     %>
                     <form action="AuthenticateUser">
                         <h1>Community Platform EEEE</h1>

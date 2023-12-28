@@ -38,7 +38,7 @@
                             %>
                                     <tr>
                                         <td><label><%=formEntries[a] %></label></td>
-                                        <td><input type="text" name=formNames[a] /></td> 
+                                        <td><input type="text" name=<%=formNames[a]%> /></td> 
 
                                     </tr>
                              <%
