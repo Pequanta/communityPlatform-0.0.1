@@ -4,18 +4,27 @@
  */
 package servlets;
 
+import dataContainers.UserInfo;
+import databaseHandlers.CreateConnection;
+import databaseHandlers.DataBaseInformationQueries;
+import databaseHandlers.DataBasePublicationQueries;
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.ArrayList;
 
 /**
  *
  * @author quantap
  */
-public class PublishServlet extends HttpServlet {
+public class PublicationStartPageServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,8 +38,23 @@ public class PublishServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try{
+            PrintWriter out = response.getWriter();
             
+            RequestDispatcher dispatcher = request.getRequestDispatcher("publication_page.jsp");
+            CreateConnection instCon = new CreateConnection();
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            out.println("<h1>Hello world</h1>");
+            Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
+            
+            DataBasePublicationQueries inst = new DataBasePublicationQueries(cont);
+            
+            String pub = inst.allPublications().toString();
+            
+            request.setAttribute("cont", pub);
+            dispatcher.forward(request, response);
+        }catch(Exception e){
+                
         }
     }
 

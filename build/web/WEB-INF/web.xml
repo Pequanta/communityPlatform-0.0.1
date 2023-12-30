@@ -16,6 +16,10 @@
         <servlet-name>PublishServlet</servlet-name>
         <servlet-class>servlets.PublishServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PublicationStartPageServlet</servlet-name>
+        <servlet-class>servlets.PublicationStartPageServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterUser</servlet-name>
         <url-pattern>/RegisterUser</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>PublishServlet</servlet-name>
         <url-pattern>/PublishServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PublicationStartPageServlet</servlet-name>
+        <url-pattern>/PublicationStartPageServlet</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>main.jsp</welcome-file>

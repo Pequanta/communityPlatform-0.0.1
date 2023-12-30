@@ -21,14 +21,10 @@ public class DataBasePublicationQueries {
      Statement statementInst;
     ResultSet resultCont;
     public Connection con;
-    public DataBasePublicationQueries(){
-        CreateConnection conInfo = new CreateConnection(); 
-        try{
-            con = DriverManager.getConnection(conInfo.getUrl() + conInfo.getDatabase(),  conInfo.getUser(), conInfo.getPassword());
-            statementInst = con.createStatement();
-            System.out.println("Connected");
-        }catch(SQLException e){
-        }
+    public DataBasePublicationQueries(Connection con) throws SQLException{
+        this.con = con;
+        statementInst = con.createStatement();
+        System.out.println("Connected");
         
     }
     public boolean addPublication(Publication publication){
@@ -104,26 +100,26 @@ public class DataBasePublicationQueries {
         }
         return rows > 0;
     }
-    public static void main(String[] args){
-        DataBasePublicationQueries inst = new DataBasePublicationQueries();
-        Publication pub = new Publication("Penielyohannes6@gmail.com", "Quantum Computing is a branch of Quantum Mechanics", "11:30", "Quantum Computing");
-        Publication pub2 = new Publication("Someone6@gmail.com", "Though it is not practically economical in its study , Quantum Computing is a branch of Quantum Mechanics", "11:30", "Practicallity of Quantum Computing");
-        Publication pub3 = new Publication("Someone6@gmail.com", "We can Use Quantum Computing to implement algorithms that are cost in nature", "11:30", "Time complex Algorithms");
-        Publication pub4 = new Publication("Penielyohannes6@gmail.com", "Physics is study of nature", "11:30", "Physics");
-        Publication pub5 = new Publication("Someone@gmail.com", "Study what ever u want!", "11:30", "Study Choice");
-        System.out.println(inst.addPublication(pub));
-        System.out.println(inst.addPublication(pub2));
-        System.out.println(inst.addPublication(pub3));
-        System.out.println(inst.addPublication(pub4));
-        System.out.println(inst.addPublication(pub5));
-        ArrayList<String> cont = inst.allPublications();
-        for(int i = 0;i < cont.size();i++){
-            System.out.println(cont.get(i));
-        }
-        inst.removePublication(pub2);
-        cont = inst.allPublications();
-        for(int i = 0;i < cont.size();i++){
-            System.out.println(cont.get(i));
-        }
-    }
+//    public static void main(String[] args){
+//        DataBasePublicationQueries inst = new DataBasePublicationQueries();
+//        Publication pub = new Publication("Penielyohannes6@gmail.com", "Quantum Computing is a branch of Quantum Mechanics", "11:30", "Quantum Computing");
+//        Publication pub2 = new Publication("Someone6@gmail.com", "Though it is not practically economical in its study , Quantum Computing is a branch of Quantum Mechanics", "11:30", "Practicallity of Quantum Computing");
+//        Publication pub3 = new Publication("Someone6@gmail.com", "We can Use Quantum Computing to implement algorithms that are cost in nature", "11:30", "Time complex Algorithms");
+//        Publication pub4 = new Publication("Penielyohannes6@gmail.com", "Physics is study of nature", "11:30", "Physics");
+//        Publication pub5 = new Publication("Someone@gmail.com", "Study what ever u want!", "11:30", "Study Choice");
+//        System.out.println(inst.addPublication(pub));
+//        System.out.println(inst.addPublication(pub2));
+//        System.out.println(inst.addPublication(pub3));
+//        System.out.println(inst.addPublication(pub4));
+//        System.out.println(inst.addPublication(pub5));
+//        ArrayList<String> cont = inst.allPublications();
+//        for(int i = 0;i < cont.size();i++){
+//            System.out.println(cont.get(i));
+//        }
+//        inst.removePublication(pub2);
+//        cont = inst.allPublications();
+//        for(int i = 0;i < cont.size();i++){
+//            System.out.println(cont.get(i));
+//        }
+//    }
 }

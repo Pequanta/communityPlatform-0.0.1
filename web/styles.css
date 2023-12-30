@@ -10,6 +10,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 body{
     margin-top: 5%;
+    background-color: black;
 }
 
 .signin_page{
@@ -25,7 +26,7 @@ body{
 .users_box{
     width: 30%;
     height: 800px;
-    background-color: #ccffcc;
+    background-color: red;
     float: right;
     border-radius: 5%;
     font-size: 100px;
@@ -34,14 +35,14 @@ body{
     overflow: auto;
 }
 .chat_box{
-    height: 800px;
     width: 70%;
-    background-color: black;
+    background-color: blue;
     float: left;
     border-radius: 5%; 
+    overflow: auto;
 }
 .chat_display{
-    background-color: gray;
+    background-color: blue;
     width: 80%;
     height:700px;
     font-size: 100px;
@@ -88,7 +89,7 @@ body{
 .sent_m{
     width: 40%;
     height: 100px;
-    background-color: #ffffcc;
+    background-color: blue;
     position: absolute;
     bottom: 0;
     margin-bottom: 100px;
@@ -99,6 +100,6 @@ body{
 .user_disp{
     width: 90%;
     height: 80px;
-    background-color:#80c1ff;
+    background-color:black;
     border-radius: 10%;
 }

@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.*"%>
+<%@page import="jservlets.*"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,7 +29,13 @@
                     %>
                 </nav>
             </header>
-            <h1>Publication</h1>
         </center>
+                <div>
+                    <jsp:include page="/PublicationStartPageServlet" />;
+                    <% String contP = (String) request.getAttribute("cont");
+                        out.println(contP);
+                    %>
+                </div>
+        
     </body>
 </html>
