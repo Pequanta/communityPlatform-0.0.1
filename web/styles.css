@@ -26,7 +26,7 @@ body{
 .users_box{
     width: 30%;
     height: 800px;
-    background-color: red;
+    background-color: greenyellow;
     float: right;
     border-radius: 5%;
     font-size: 100px;
@@ -36,13 +36,13 @@ body{
 }
 .chat_box{
     width: 70%;
-    background-color: blue;
+    background-color: cornsilk;
     float: left;
     border-radius: 5%; 
     overflow: auto;
 }
 .chat_display{
-    background-color: blue;
+    background-color: white;
     width: 80%;
     height:700px;
     font-size: 100px;
