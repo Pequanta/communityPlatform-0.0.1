@@ -7,6 +7,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@page import="java.util.ArrayList"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -37,8 +40,15 @@
                 <div class="chat_display">
                     <div class="sent_m">
                         <%
-                            String updatedData = (String) request.getAttribute("sentMessage");
-                            out.print(updatedData);                        
+                            ArrayList<String> updatedData = (ArrayList) request.getAttribute("sentMessage");
+                            if(updatedData != null){
+                                for(int i = 0; i < updatedData.size();i++){
+                                    %>
+                                    <label><%=updatedData.get(i)%></label></br>
+                                    <%
+                                    }
+                            }
+                            
                         %>  
                     </div>
                 </div>
