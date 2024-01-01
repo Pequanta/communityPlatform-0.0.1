@@ -54,19 +54,22 @@ public class RegisterUser extends HttpServlet {
                 
                 //One problem seems to be hard to reach though
                 //The question that "Who is authorized to have professional account ?" is not answered with this logic. 
-//                if(UserInputValidate.validEmail(userEmail) && UserInputValidate.validName(userName) && UserInputValidate.validPassword(userPassword) > 0 && inst.checkUserExist(userData)){
-//                    out.println("<h1> jUST CHECKING =</h1>");
-//                    
-  
-                if(UserInputValidate.validEmail(userEmail)){
-                    out.println("<h1>Valid email</h1>");
-                }if(UserInputValidate.validName(userName)){
-                    out.println("<h1>Valid Name</h1>");
-                }if(UserInputValidate.validPassword(userPassword) != 1000){
-                    out.println("<h1>Valid Password</h1>");
-                    out.println("<h1>" + UserInputValidate.validPassword(userPassword)+ "</h1>");
+                if(UserInputValidate.validEmail(userEmail) && UserInputValidate.validName(userName) && !inst.checkUserExist(userData)){
+                    inst.addUser(userData);
+                    out.println("<h1>Successfully signed up</h1>");
+                    out.println("<a href=\"signin.jsp\"><h1>Signin</h1></a>");
+                }else if(!UserInputValidate.validName(userName)){
+                    out.println("<h1>Invalid Name</h1>");
+                    out.println("<a href=\"signup.jsp\"><h1>TryAgain!</h1></a>");
+                }else if(!UserInputValidate.validEmail(userEmail)){
+                    out.println("<h1>Invalid Email</h1>");
+                    out.println("<a href=\"signup.jsp\"><h1>TryAgain!</h1></a>");
+                }else if(inst.checkUserExist(userData)){
+                    out.println("<h1>User alread exists</h1>");
+                    out.println("<a href=\"signin.jsp\"><h1>Sign in</h1></a>");
                 }else{
-                    out.println("<h1> just wondering</h1>");
+                    out.println("<h1>Invalid Credentials</h1>");
+                    out.println("<a href=\"signup.jsp\"><h1>TryAgain!</h1></a>");
                 }
             }catch(Exception e){
                 e.printStackTrace();

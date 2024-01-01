@@ -6,6 +6,7 @@ package servlets;
 import databaseHandlers.DataBaseInformationQueries;
 import dataContainers.UserInfo;
 import databaseHandlers.CreateConnection;
+import importantUtils.UserInputValidate;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -46,13 +47,13 @@ public class AuthenticateUser extends HttpServlet {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
                 DataBaseInformationQueries inst = new DataBaseInformationQueries(cont);
-                if(inst.userInfo(userEmail).getPassword().equals(userPassword)){
+                if(UserInputValidate.validEmail(userEmail) && inst.userInfo(userEmail).getPassword().equals(userPassword)){
                     HttpSession session = request.getSession(true);
                     session.setAttribute("person" , userData);
                     response.sendRedirect("home.jsp");
                 }else{
-                    out.println("<h1>"+ userData.toString() + "</h1>");
-                    out.println("<h1>"+ inst.userInfo(userEmail).toString() + "</h1>");
+                    out.println("<h1>InvalidCredentials</h1>");
+                    out.println("<a href=\"signin.jsp\"><h1>TryAgain!</h1></a>");
                 }
                 
                 

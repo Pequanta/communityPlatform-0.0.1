@@ -31,14 +31,11 @@ public class UserInputValidate {
     //2 for strong password;
     //-1 for invalid input : this includes empty password
     public static int validPassword(String password){
-        String invalidPassword = "[a-z]+";
-        String weakPassword = "[a-zA-Z0-9]+";
-        String strongPassword = "[[a-zA-z0-9]{1,}[^a-zA-Z0-9]{1,}]+";
         int res = -1;
-        if(Pattern.matches(strongPassword, password)) res= 2;
-        else if(Pattern.matches(weakPassword, password)) res= 1;
-        else if(Pattern.matches(invalidPassword, password)) res= 0;
-        else res = 3;
+        String cap = "[A-Z]{1,}", small="[a-z]{1,}", nums = "[0-9]{1,}", symbols = "[^a-zA-Z0-9]{1,}";
+        if(Pattern.matches(cap, password) && Pattern.matches(small, password) && Pattern.matches(nums, password) && Pattern.matches(symbols, password)) res= 2;
+        else if(Pattern.matches(small, password) && Pattern.matches(cap, password)) res= 1;
+        else if(Pattern.matches(small, password)) res= 0;
         return res;
     }
 }

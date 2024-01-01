@@ -48,10 +48,6 @@ public class PublicationStartPageServlet extends HttpServlet {
             Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
             
             DataBasePublicationQueries inst = new DataBasePublicationQueries(cont);
-            
-            String pub = inst.allPublications().toString();
-            
-            request.setAttribute("cont", pub);
             dispatcher.forward(request, response);
         }catch(Exception e){
                 

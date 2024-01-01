@@ -60,7 +60,7 @@ public class SendMessageServlet extends HttpServlet {
                 ArrayList contUsers = users.allUsers();
                 //I couldn't set an array for the recived argument from the jsp file. And for the time being strings are serving as a place holder
                 //The optimal solution is to return an array for the caller tag in chat_room.jsp and build a div for the response.
-                request.setAttribute("user_t",senderInfo.getFname() + " "+senderInfo.getLname());
+                request.setAttribute("user_t",senderInfo.getFname());
                 request.setAttribute("users",contUsers);
                 request.setAttribute("sentMessage", contMessageList);
                 dispatcher.forward(request, response);
