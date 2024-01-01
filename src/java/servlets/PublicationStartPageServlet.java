@@ -44,10 +44,13 @@ public class PublicationStartPageServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("publication_page.jsp");
             CreateConnection instCon = new CreateConnection();
             Class.forName("com.mysql.cj.jdbc.Driver");
-            out.println("<h1>Hello world</h1>");
             Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
             
             DataBasePublicationQueries inst = new DataBasePublicationQueries(cont);
+            
+            out.println("<h1>Hello world</h1>");
+            ArrayList<String> allPublication = inst.allPublications();
+            request.setAttribute("publicationCont", allPublication);
             dispatcher.forward(request, response);
         }catch(Exception e){
                 

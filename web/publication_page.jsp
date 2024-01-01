@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.*"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="jservlets.*"%>
 <!DOCTYPE html>
 <html>
@@ -15,6 +15,7 @@
         <link rel="stylesheet" type="text/css" href="styles.css" />
     </head>
     <body>
+        <jsp:include page="/PublicationStartPageServlet" />;
         <center>
             <header class="header">
                 <nav>
@@ -30,12 +31,20 @@
                 </nav>
             </header>
         </center>
-                <div>
-                    <jsp:include page="/PublicationStartPageServlet" />;
-                    <% String contP = (String) request.getAttribute("cont");
-                        out.println(contP);
+        <div class="allPublications"><div>
+        <div class="publicationPage">
+            
+            <% ArrayList contP = (ArrayList) request.getAttribute("publicationCont");
+                if(contP != null){
+                    for(int i = 0; i < contP.size(); i++){
                     %>
-                </div>
+                    <div class="publicationEach"><%=contP.get(i)%></div>
+                    <%
+                }
+                }
+            %>
+        </div>
+        
         
     </body>
 </html>
