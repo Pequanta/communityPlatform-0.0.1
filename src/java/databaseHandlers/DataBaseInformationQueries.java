@@ -11,7 +11,7 @@ package databaseHandlers;
 
 import dataContainers.UserInfo;
 import java.sql.*;
-
+import java.util.ArrayList;
 
 public class DataBaseInformationQueries {
     Statement statementInst;
@@ -65,6 +65,20 @@ public class DataBaseInformationQueries {
         }
         return null;
     }
+    public ArrayList allUsers(){
+        String allUsersStatement = "SELECT * FROM community_user";
+        ArrayList<String> usersC = new ArrayList<>();
+        try{
+            resultCont = statementInst.executeQuery(allUsersStatement);
+            while(resultCont.next()){
+                usersC.add(resultCont.getString("user_f_name") + " " + resultCont.getString("user_l_name"));
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return usersC;
+    }
     public boolean removeUser(UserInfo userData){
         int rows = 0;
         String removeUserStatement = "DELETE FROM community_user WHERE user_email = '" + userData.getEmail()+"'";
@@ -75,5 +89,15 @@ public class DataBaseInformationQueries {
         }
         return rows > 0;
     }
-    
+//    public static void main(String[] args){
+//        try{
+//            CreateConnection cInst = new CreateConnection();
+//            Connection con = DriverManager.getConnection(cInst.getUrl() + cInst.getDatabase(), cInst.getUser(), cInst.getPassword());
+//            DataBaseInformationQueries inst = new DataBaseInformationQueries(con);
+//            System.out.println(inst.allUsers());
+//        }catch(Exception e){
+//            e.printStackTrace();
+//        }
+//        
+//    }
 }

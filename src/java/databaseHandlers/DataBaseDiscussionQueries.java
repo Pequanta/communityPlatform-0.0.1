@@ -96,26 +96,25 @@ public class DataBaseDiscussionQueries {
         }
         return rows > 0;
     }
-    
+    public boolean clearChat(){
+        String clearChatStatement = "DELETE FROM message_table";
+        int rows = 0;
+        try{
+            rows = statementInst.executeUpdate(clearChatStatement);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return rows > 0;
+    }
 //    public static void main(String[] args){
 //        try{
 //            CreateConnection createInst = new CreateConnection();
 //            Connection con = DriverManager.getConnection(createInst.getUrl() + createInst.getDatabase(), createInst.getUser(), createInst.getPassword());
 //            DataBaseDiscussionQueries inst = new DataBaseDiscussionQueries(con);
+//            System.out.println(inst.allMessages());
+//            System.out.println(inst.clearChat());
+//            System.out.println(inst.allMessages());
 //            
-//            ChatInfo chat = new ChatInfo("Penielyohannes6@gmail.com", "Hello there, How are you?", "11:30");
-//            ChatInfo chat2 = new ChatInfo("Someone@gmail.com", "fine , how are u?", "11:31");
-//            ChatInfo chat3 = new ChatInfo("Penielyohannes6@gmail.com", "good!, whats up", "11:33");
-//            ChatInfo chat4 = new ChatInfo("Someone@gmail.com", "Not much!", "11:34");
-//            ChatInfo chat5 = new ChatInfo("Someone@gmail.com", "Not much! whats up with u?", "11:34");
-////            System.out.println(inst.addChat(chat));
-////            System.out.println(inst.addChat(chat2));
-////            System.out.println(inst.addChat(chat3));
-////            System.out.println(inst.addChat(chat4));
-////            System.out.println(inst.addChat(chat3));
-////            System.out.println(inst.addChat(chat5));
-//            System.out.println(inst.messageInfo(chat4.getMessageContent()).getUserEmail());
-//            System.out.println(inst.allMessages().toString());
 //        }catch(Exception e){
 //            
 //        }

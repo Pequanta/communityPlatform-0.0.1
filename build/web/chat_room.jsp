@@ -41,10 +41,11 @@
                     <div class="sent_m">
                         <%
                             ArrayList<String> updatedData = (ArrayList) request.getAttribute("sentMessage");
+                            String name = (String) request.getAttribute("user_t");
                             if(updatedData != null){
                                 for(int i = 0; i < updatedData.size();i++){
                                     %>
-                                    <label><%=updatedData.get(i)%></label></br>
+                                    <div class="messageDiv"><%=name%>: <%=updatedData.get(i)%></div></br>
                                     <%
                                     }
                             }
@@ -60,16 +61,16 @@
             <div class="users_box">
                 <label>Users</label>
                 <%
-                    // Assuming you have a list of labels or an array
-                    String[] users = {"user1", "user2", "user3", "user4","user5"};
-
-                    // Loop through the labels and generate HTML
-                    for (int i = 0; i < 100;i++) {
-                %>
-                        <div class="user_disp"><%= users[i % users.length] %></div>
-                <%
-                    }
-                %>
+                            ArrayList<String> allUsers = (ArrayList) request.getAttribute("users");
+                            if(allUsers != null){
+                                for(int j = 0; j < allUsers.size();j++){
+                                    %>
+                                    <div class="userDiv"><%= allUsers.get(j) %></div>
+                                    <%
+                                    }
+                            }
+                            
+                %>  
             </div>
       </center>
     </body>

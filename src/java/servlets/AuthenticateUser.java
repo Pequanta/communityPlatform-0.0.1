@@ -46,12 +46,13 @@ public class AuthenticateUser extends HttpServlet {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
                 DataBaseInformationQueries inst = new DataBaseInformationQueries(cont);
-                if(inst.checkUserExist(userData) && inst.userInfo(userEmail).getPassword().equals(userPassword)){
+                if(inst.userInfo(userEmail).getPassword().equals(userPassword)){
                     HttpSession session = request.getSession(true);
                     session.setAttribute("person" , userData);
                     response.sendRedirect("home.jsp");
                 }else{
-                    out.println("<h1> User doesn't exist</h1>");
+                    out.println("<h1>"+ userData.toString() + "</h1>");
+                    out.println("<h1>"+ inst.userInfo(userEmail).toString() + "</h1>");
                 }
                 
                 

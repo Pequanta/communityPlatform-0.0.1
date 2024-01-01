@@ -6,6 +6,7 @@ package servlets;
 import databaseHandlers.DataBaseInformationQueries;
 import dataContainers.UserInfo;
 import databaseHandlers.CreateConnection;
+import importantUtils.UserInputValidate;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -45,9 +46,28 @@ public class RegisterUser extends HttpServlet {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
                 DataBaseInformationQueries inst = new DataBaseInformationQueries(cont);
-                inst.addUser(userData);
-                out.println("Successfully signed up!");
-                out.println("<a href=signin.jsp>SignIn</a>");
+                
+                //User credentials are analysed with the following logic;
+                //First validation will be about input validation and the second will be about the users legitmacy for registration;
+                //This include whether the user has already been registered or whether the user is student or professional
+                
+                
+                //One problem seems to be hard to reach though
+                //The question that "Who is authorized to have professional account ?" is not answered with this logic. 
+//                if(UserInputValidate.validEmail(userEmail) && UserInputValidate.validName(userName) && UserInputValidate.validPassword(userPassword) > 0 && inst.checkUserExist(userData)){
+//                    out.println("<h1> jUST CHECKING =</h1>");
+//                    
+  
+                if(UserInputValidate.validEmail(userEmail)){
+                    out.println("<h1>Valid email</h1>");
+                }if(UserInputValidate.validName(userName)){
+                    out.println("<h1>Valid Name</h1>");
+                }if(UserInputValidate.validPassword(userPassword) != 1000){
+                    out.println("<h1>Valid Password</h1>");
+                    out.println("<h1>" + UserInputValidate.validPassword(userPassword)+ "</h1>");
+                }else{
+                    out.println("<h1> just wondering</h1>");
+                }
             }catch(Exception e){
                 e.printStackTrace();
             }
