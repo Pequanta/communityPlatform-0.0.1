@@ -71,9 +71,11 @@ public class RegisterUser extends HttpServlet {
                     out.println("<h1>Invalid Credentials</h1>");
                     out.println("<a href=\"signup.jsp\"><h1>TryAgain!</h1></a>");
                 }
+                cont.close();
             }catch(Exception e){
                 e.printStackTrace();
             }
+            
     }
             
     @Override

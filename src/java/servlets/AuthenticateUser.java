@@ -45,7 +45,9 @@ public class AuthenticateUser extends HttpServlet {
                 UserInfo userData = new UserInfo(userFullName[0], userFullName[1],userInstitute, userEmail, userPassword, Integer.parseInt(userEducationLevel));
                 CreateConnection instCon = new CreateConnection();
                 Class.forName("com.mysql.cj.jdbc.Driver");
+                out.println("<h1> Hello world</h1>");
                 Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
+                
                 DataBaseInformationQueries inst = new DataBaseInformationQueries(cont);
                 if(UserInputValidate.validEmail(userEmail) && inst.userInfo(userEmail).getPassword().equals(userPassword)){
                     HttpSession session = request.getSession(true);
@@ -55,10 +57,12 @@ public class AuthenticateUser extends HttpServlet {
                     out.println("<h1>InvalidCredentials</h1>");
                     out.println("<a href=\"signin.jsp\"><h1>TryAgain!</h1></a>");
                 }
+                cont.close();
                 
                 
                 
             }catch(Exception e){
+                //out.println("<h1>Connection Error</h1>");
                 e.printStackTrace();
             }
             

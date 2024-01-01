@@ -51,6 +51,7 @@ public class PublicationStartPageServlet extends HttpServlet {
             out.println("<h1>Hello world</h1>");
             ArrayList<String> allPublication = inst.allPublications();
             request.setAttribute("publicationCont", allPublication);
+            cont.close();
             dispatcher.forward(request, response);
         }catch(Exception e){
                 
