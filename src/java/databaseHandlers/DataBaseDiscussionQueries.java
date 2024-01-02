@@ -106,18 +106,18 @@ public class DataBaseDiscussionQueries {
         }
         return rows > 0;
     }
-//    public static void main(String[] args){
-//        try{
-//            CreateConnection createInst = new CreateConnection();
-//            Connection con = DriverManager.getConnection(createInst.getUrl() + createInst.getDatabase(), createInst.getUser(), createInst.getPassword());
-//            DataBaseDiscussionQueries inst = new DataBaseDiscussionQueries(con);
-//            System.out.println(inst.allMessages());
-//            System.out.println(inst.clearChat());
-//            System.out.println(inst.allMessages());
-//            
-//        }catch(Exception e){
-//            
-//        }
-//        
-//    }
+    public static void main(String[] args){
+        try{
+            CreateConnection createInst = new CreateConnection();
+            Connection con = DriverManager.getConnection(createInst.getUrl() + createInst.getDatabase(), createInst.getUser(), createInst.getPassword());
+            DataBaseDiscussionQueries inst = new DataBaseDiscussionQueries(con);
+            System.out.println(inst.allMessages());
+            System.out.println(inst.clearChat());
+            System.out.println(inst.allMessages());
+            
+        }catch(Exception e){
+            
+        }
+        
+    }
 }

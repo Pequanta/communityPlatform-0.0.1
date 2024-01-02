@@ -52,7 +52,7 @@ public class AuthenticateUser extends HttpServlet {
                 if(UserInputValidate.validEmail(userEmail) && inst.userInfo(userEmail).getPassword().equals(userPassword)){
                     HttpSession session = request.getSession(true);
                     session.setAttribute("person" , userData);
-                    response.sendRedirect("home.jsp");
+                    response.sendRedirect("publication_page.jsp");
                 }else{
                     out.println("<h1>InvalidCredentials</h1>");
                     out.println("<a href=\"signin.jsp\"><h1>TryAgain!</h1></a>");

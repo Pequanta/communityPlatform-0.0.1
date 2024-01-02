@@ -24,7 +24,7 @@ import java.util.ArrayList;
  *
  * @author quantap
  */
-public class PublicationStartPageServlet extends HttpServlet {
+public class PublicationPageServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,18 +41,17 @@ public class PublicationStartPageServlet extends HttpServlet {
         try{
             PrintWriter out = response.getWriter();
             
-            RequestDispatcher dispatcher = request.getRequestDispatcher("publication_page.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("publicationContPage.jsp");
             CreateConnection instCon = new CreateConnection();
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
             
             DataBasePublicationQueries inst = new DataBasePublicationQueries(cont);
-            
-            out.println("<h1>Hello world</h1>");
             ArrayList<String> allPublication = inst.allPublications();
-            request.setAttribute("publicationCont", allPublication);
-            cont.close();
+            request.setAttribute("allPublicationCont", allPublication);
             dispatcher.forward(request, response);
+            cont.close();
+            
         }catch(Exception e){
                 
         }

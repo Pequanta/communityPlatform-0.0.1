@@ -25,8 +25,9 @@
                         }
                     %>
                 </nav>
-            </header>
-            <h1>Home</h1>
+            </header>         
+                <a href="signin.jsp">Sign In</a>
+                <a href="signup.jsp">Sign Up</a>
         </center>
     </body>
 </html>

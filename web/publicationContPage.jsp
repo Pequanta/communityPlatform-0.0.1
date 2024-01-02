@@ -29,13 +29,31 @@
                     %>
                 </nav>
             </header>
-            <form action="PublicationPageServlet">
-                <input type="submit" name="publicationPage" value="Publicaiton Page" />
-            </form>
-            <form action="PublishServlet">
-                <input type="submit" name="publishPage" value="Publishing Page" />
-            </form>
         </center>
+        <div class="publicationPage">
+            <h1 name="text_H"> Place holder</h1>
+        </div>   
+        <div class="allPublications">
+            <%
+                            ArrayList<String> publications = (ArrayList) request.getAttribute("allPublicationCont");
+                            if(publications != null){
+                                for(int i = 0; i < publications.size();i++){
+                                    %>
+                                        <form action="DisplayPublicationServlet">
+                                            <input type="submit" name=<%=publications.get(i)%> value=<%=publications.get(i)%> class="titles" />
+                                        </form>
+                                    <%
+                                    }
+                            }else{
+                                %>
+                                <h1>Check here</h1>
+                                <%
+                            }
+                            
+                        %> 
+        </div>
+        
+        
         
     </body>
 </html>
