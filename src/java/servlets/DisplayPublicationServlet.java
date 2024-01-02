@@ -4,6 +4,7 @@
  */
 package servlets;
 
+import dataContainers.Publication;
 import dataContainers.UserInfo;
 import databaseHandlers.CreateConnection;
 import databaseHandlers.DataBaseInformationQueries;
@@ -47,6 +48,15 @@ public class DisplayPublicationServlet extends HttpServlet {
             Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
             
             DataBasePublicationQueries inst = new DataBasePublicationQueries(cont);
+            int pub_id = Integer.parseInt((String)request.getAttribute("pubId"));
+            Publication pubContent = new Publication();
+            ArrayList<String> allPub = inst.allPublications();
+            for(int i = 0; i< allPub.size();i++){
+                if((allPub.get(i)).split(",")[0].equals(pub_id + "")){
+                    pubContent = inst.publicationInfo(pub_id);
+                }
+            }
+            request.setAttribute("text_h", pubContent.getPublicationText());
             dispatcher.forward(request, response);
             cont.close();
             

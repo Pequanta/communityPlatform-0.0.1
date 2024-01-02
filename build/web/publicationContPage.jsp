@@ -36,11 +36,15 @@
         <div class="allPublications">
             <%
                             ArrayList<String> publications = (ArrayList) request.getAttribute("allPublicationCont");
+                            ArrayList<String> pubIds= new ArrayList<String>(); 
                             if(publications != null){
+                                %>
+                                <%
                                 for(int i = 0; i < publications.size();i++){
                                     %>
                                         <form action="DisplayPublicationServlet">
-                                            <input type="submit" name=<%=publications.get(i)%> value=<%=publications.get(i)%> class="titles" />
+                                                <h3 class="titles"><%=publications.get(i).split(",")[1]%><h3>
+                                                <input type="submit" name="pubId" value=<%=publications.get(i).split(",")[0]%> class="read" >
                                         </form>
                                     <%
                                     }

@@ -136,6 +136,7 @@ body{
         height: 700px;
         width: 30%;
         float: left;
+        overflow: auto;
 }
 
 .resourcePage{
@@ -146,5 +147,4 @@ body{
 
 .titles{
     width:100%;
-    height: 100px;
 }
