@@ -67,19 +67,12 @@ body{
     border-radius: 40%;
 }
 .header{
-    /*position: absolute;*/
-    /*right: 10px;*/
-    /*top: 50px;*/
-    /*display: block;*/
     width: 40vw;
     color: black;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    padding-bottom: 40px;
-    padding-bottom: 40px;
     padding-top: -20px;
 }
 .sent_m{
