@@ -10,7 +10,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 body{
     margin-top: 5%;
-    background-color: black;
+    background-color: red;
 }
 
 .signin_page{
@@ -19,7 +19,7 @@ body{
 }
 
 .sign_page{
-    background: black;
+    background: red;
     font-family: 'Dancing Script', cursive;
 }
 .users_box{
