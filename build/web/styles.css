@@ -10,20 +10,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 body{
     margin-top: 5%;
-    background-color: #fdffed;
-    background-image: url('bg.png');
+    background-color: black;
 }
 
 .signin_page{
     display:flex;
     justify-content: center;
-    background-image: url('bg.png');
 }
 
 .sign_page{
     background: black;
     font-family: 'Dancing Script', cursive;
-    background-image: url('bg.png');
 }
 .users_box{
     width: 30%;
