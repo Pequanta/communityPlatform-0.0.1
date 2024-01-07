@@ -1,4 +1,4 @@
-<%-- 
+w<%-- 
     Document   : Resources
     Created on : Dec 24, 2023, 8:26:52 AM
     Author     : quantap
@@ -27,9 +27,11 @@
                     %>
                 </nav>
             </header>
-            
                 <div class="resourcePage">
-                    
+                    <div class="universityWebsites">
+                    </div>
+                    <div class="universityWebsites">
+                    </div>
                 </div>
         </center>
     </body>

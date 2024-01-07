@@ -11,17 +11,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 body{
     margin-top: 5%;
     background-color: #fdffed;
+    background-image: url('bg.png');
 }
 
 .signin_page{
     display:flex;
     justify-content: center;
+    background-image: url('bg.png');
 }
 
 .sign_page{
-    background: #80c1ff;
+    background: black;
     font-family: 'Dancing Script', cursive;
-    
+    background-image: url('bg.png');
 }
 .users_box{
     width: 30%;
@@ -53,21 +55,18 @@ body{
 .message_box{
     width: 50%;
     height: 50px;
-    position: absolute;
     bottom: 0;
     margin-bottom: 20px;
-    margin-left: -25%;
     border-radius: 20%;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400; /* Normal */
     font-size: 50;
 }
 .send_message{
-    position: absolute;
     bottom: 0;
+    height: 50px;
     margin-bottom: 37px;
-    margin-left: 27%;
-    width: 5%;
+    width: 10%;
     border-radius: 40%;
 }
 .header{
@@ -90,7 +89,6 @@ body{
     width: 50%;
     height: 600px;
     background-color: white;
-    position: absolute;
     border-radius: 10%;
     overflow: auto;
     font-family: 'Open Sans', sans-serif;
@@ -106,7 +104,7 @@ body{
 }
 
 .messageDiv{
-    background-color: gray;
+    background-color: #ccffcc; 
     border: 5px;
     border-radius: 20px;
 }

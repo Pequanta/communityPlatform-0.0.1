@@ -35,26 +35,25 @@ public class AuthenticateUser extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
             PrintWriter out = response.getWriter();
-            String userName = request.getParameter("uname"), 
-                    userInstitute = request.getParameter("institute"),
-                    userEmail = request.getParameter("email"),
-                    userEducationLevel = request.getParameter("education_level"),
+            String userEmail = request.getParameter("email"),
                     userPassword = request.getParameter("password");
-            String[] userFullName = userName.split(" ");
             try{
-                UserInfo userData = new UserInfo(userFullName[0], userFullName[1],userInstitute, userEmail, userPassword, Integer.parseInt(userEducationLevel));
+                
                 CreateConnection instCon = new CreateConnection();
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 out.println("<h1> Hello world</h1>");
                 Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
                 
                 DataBaseInformationQueries inst = new DataBaseInformationQueries(cont);
-                if(UserInputValidate.validEmail(userEmail) && inst.userInfo(userEmail).getPassword().equals(userPassword)){
+                UserInfo userData = inst.getUserInfoByEmail(userEmail);
+                if(UserInputValidate.validEmail(userData.getEmail()) && inst.getUserInfoByEmail(userEmail).getPassword().equals(userPassword)){
                     HttpSession session = request.getSession(true);
                     session.setAttribute("person" , userData);
                     response.sendRedirect("publication_page.jsp");
                 }else{
                     out.println("<h1>InvalidCredentials</h1>");
+                    out.println("<h1>" + userEmail + "</h1>");
+                     out.println("<h1>" + userPassword + "</h1>");
                     out.println("<a href=\"signin.jsp\"><h1>TryAgain!</h1></a>");
                 }
                 cont.close();

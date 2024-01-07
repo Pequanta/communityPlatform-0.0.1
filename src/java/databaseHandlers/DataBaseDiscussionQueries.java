@@ -1,8 +1,7 @@
-package databaseHandlers;
+  package databaseHandlers;
 
 import dataContainers.ChatInfo;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -71,12 +70,12 @@ public class DataBaseDiscussionQueries {
         }
         return null;
     }
-    public ChatInfo messageInfo(String messageContent){
-        String userInfoStatement = "SELECT * FROM message_table WHERE UPPER(message_content) = '" + messageContent.toUpperCase()+"'";
+    public ChatInfo messageInfo(int messageId){
+        String userInfoStatement = "SELECT * FROM message_table message_id = '" + messageId +"'";
         try{
             resultCont = statementInst.executeQuery(userInfoStatement);
             if(resultCont.next()){
-                return new ChatInfo(resultCont.getString("user_email"),
+                return new ChatInfo("PenielYohannes6@gmail.com",
                         resultCont.getString("message_content"),
                         resultCont.getString("message_time"));
             }
@@ -88,7 +87,7 @@ public class DataBaseDiscussionQueries {
     }
     public boolean removeChat(ChatInfo messageData){
         int rows = 0;
-        String removeUserStatement = "DELETE FROM message_table WHERE UPPER(user_email) = '" + messageData.getUserEmail().toUpperCase()+"' AND UPPER(message_content) = '" + messageData.getMessageContent().toUpperCase()+"'";
+        String removeUserStatement = "DELETE FROM message_table WHERE UPPER(user_id) = '" + messageData.getUserEmail() +"' AND UPPER(message_content) = '" + messageData.getMessageContent().toUpperCase()+"'";
         try{
             rows = statementInst.executeUpdate(removeUserStatement);
         }catch(Exception e){
@@ -96,6 +95,10 @@ public class DataBaseDiscussionQueries {
         }
         return rows > 0;
     }
+   
+    
+    //The following piece of should be removed in time of deployement;
+/*
     public boolean clearChat(){
         String clearChatStatement = "DELETE FROM message_table";
         int rows = 0;
@@ -106,18 +109,19 @@ public class DataBaseDiscussionQueries {
         }
         return rows > 0;
     }
-    public static void main(String[] args){
-        try{
-            CreateConnection createInst = new CreateConnection();
-            Connection con = DriverManager.getConnection(createInst.getUrl() + createInst.getDatabase(), createInst.getUser(), createInst.getPassword());
-            DataBaseDiscussionQueries inst = new DataBaseDiscussionQueries(con);
-            System.out.println(inst.allMessages());
-            System.out.println(inst.clearChat());
-            System.out.println(inst.allMessages());
-            
-        }catch(Exception e){
-            
-        }
-        
-    }
+*/
+//    public static void main(String[] args){
+//        try{
+//            CreateConnection createInst = new CreateConnection();
+//            Connection con = DriverManager.getConnection(createInst.getUrl() + createInst.getDatabase(), createInst.getUser(), createInst.getPassword());
+//            DataBaseDiscussionQueries inst = new DataBaseDiscussionQueries(con);
+//            System.out.println(inst.allMessages());
+//            System.out.println(inst.clearChat());
+//            System.out.println(inst.allMessages());
+//            
+//        }catch(Exception e){
+//            
+//        }
+//        
+//    }
 }

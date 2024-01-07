@@ -47,7 +47,7 @@ public class DataBaseInformationQueries {
         }
         return false;
     }
-    public UserInfo userInfo(String email){
+    public UserInfo getUserInfoByEmail(String email){
         String userInfoStatement = "SELECT * FROM community_user WHERE UPPER(user_email) = '" + email.toUpperCase()+"'";
         try{
             resultCont = statementInst.executeQuery(userInfoStatement);
@@ -89,6 +89,43 @@ public class DataBaseInformationQueries {
         }
         return rows > 0;
     }
+    public UserInfo getUserInfoById(int userId){
+        String getUserInfoStatement = "SELECT * FROM community_user WHERE user_id = '" + userId + "'";
+        try{
+            resultCont = statementInst.executeQuery(getUserInfoStatement);
+            if(resultCont.next()){
+                return new UserInfo(resultCont.getString("user_f_name"),
+                        resultCont.getString("user_l_name"),
+                        resultCont.getString("user_institute"),
+                        resultCont.getString("user_email"),
+                        resultCont.getString("user_password"),
+                        resultCont.getInt("user_education_level"));
+            }
+            else return null;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public UserInfo getUserId(String email){
+        String getUserIdStatement = "SELECT * FROM community_user WHERE UPPER(user_email) = '" + email.toUpperCase() + "'";
+        try{
+            resultCont = statementInst.executeQuery(getUserIdStatement);
+            if(resultCont.next()){
+                return new UserInfo(resultCont.getString("user_f_name"),
+                        resultCont.getString("user_l_name"),
+                        resultCont.getString("user_institute"),
+                        resultCont.getString("user_email"),
+                        resultCont.getString("user_password"),
+                        resultCont.getInt("user_education_level"));
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+        
+    }
+       
 //    public static void main(String[] args){
 //        try{
 //            CreateConnection cInst = new CreateConnection();
