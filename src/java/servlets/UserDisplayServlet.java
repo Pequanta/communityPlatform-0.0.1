@@ -4,11 +4,8 @@
  */
 package servlets;
 
-import dataContainers.Publication;
-import dataContainers.UserInfo;
 import databaseHandlers.CreateConnection;
 import databaseHandlers.DataBaseInformationQueries;
-import databaseHandlers.DataBasePublicationQueries;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,7 +13,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
@@ -25,7 +21,7 @@ import java.util.ArrayList;
  *
  * @author quantap
  */
-public class DisplayPublicationServlet extends HttpServlet {
+public class UserDisplayServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,31 +36,19 @@ public class DisplayPublicationServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try{
-            PrintWriter out = response.getWriter();
-            
-            RequestDispatcher dispatcher = request.getRequestDispatcher("publicationContPage.jsp");
             CreateConnection instCon = new CreateConnection();
             Class.forName("com.mysql.cj.jdbc.Driver");
+
             Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
-            
-            DataBasePublicationQueries inst = new DataBasePublicationQueries(cont);
-            int pub_id = Integer.parseInt(request.getParameter("pubId"));
-            System.out.println("pub_id : " + pub_id);
-            Publication pubContent = inst.publicationInfo(pub_id);
-            System.out.println(pubContent.getPublicationText());
-            request.setAttribute("content", pubContent.getPublicationText());
-            
-            ArrayList<String> allPublication = inst.allPublications();
-            request.setAttribute("allPublicationCont", allPublication);
-            dispatcher.forward(request, response);
+            DataBaseInformationQueries users = new DataBaseInformationQueries(cont);
+            ArrayList contUsers = users.allUsers();
+            request.setAttribute("users",contUsers);
+
             cont.close();
-            
-            
         }catch(Exception e){
-                
+            e.printStackTrace();
         }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

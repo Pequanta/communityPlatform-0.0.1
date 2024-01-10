@@ -30,33 +30,36 @@
                 </nav>
             </header>
         </center>
-        <div class="publicationPage">
-            <h1 name="text_H"> Place holder</h1>
-        </div>   
-        <div class="allPublications">
-            <%
-                            ArrayList<String> publications = (ArrayList) request.getAttribute("allPublicationCont");
-                            ArrayList<String> pubIds= new ArrayList<String>(); 
-                            if(publications != null){
-                                %>
-                                <%
-                                for(int i = 0; i < publications.size();i++){
-                                    %>
-                                        <form action="DisplayPublicationServlet">
-                                                <h3 class="titles"><%=publications.get(i).split(",")[1]%><h3>
-                                                <input type="submit" name="pubId" value=<%=publications.get(i).split(",")[0]%> class="read" >
-                                        </form>
-                                    <%
-                                    }
-                            }else{
-                                %>
-                                <h1>Check here</h1>
-                                <%
+        <form action="DisplayPublicationServlet">
+            <div class="publicationPage">
+                <% String content = (String) request.getAttribute("content");%>
+                <% if(content!= null) {%> 
+                                        <h1 name="text_H"><%=content%></h1>
+                <% } %>
+                
+            </div>   
+            <div class="allPublications">
+                <%
+                    ArrayList<String> publications = (ArrayList) request.getAttribute("allPublicationCont");
+                    ArrayList<String> pubIds= new ArrayList<String>(); 
+                    
+                    if(publications != null){
+                        for(int i = 0; i < publications.size();i++){
+                            %>
+                            <button type="submit" name="pubId" id="dispPub" value=<%=publications.get(i).split(",")[2]%>>
+                                <h1><%=publications.get(i).split(",")[3]%></h1>
+                                <h4 class="authorInfo"><%=publications.get(i).split(",")[0]%></h4>
+                                <h4 class="authorInfo"><%=publications.get(i).split(",")[1]%></h4>
+                            </button><br>
+ 
+                            <%
                             }
-                            
-                        %> 
-        </div>
-        
+                    }
+
+                %> 
+            </div>
+        </form>
+
         
         
     </body>

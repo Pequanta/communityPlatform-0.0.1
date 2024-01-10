@@ -10,32 +10,20 @@ package dataContainers;
  * @author quantap
  */
 public class ChatInfo {
-    private String userEmail, messageContent, sentTime;
+    private String messageContent, sentTime;
     public ChatInfo(){
-        this.userEmail = "Test";
         this.messageContent = "Test";
         this.sentTime = "Test";
     }
-    public ChatInfo(String userEmail, String messageContent, String sentTime){
-        this.userEmail = userEmail;
+    public ChatInfo(String messageContent, String sentTime){
         this.messageContent = messageContent;
         this.sentTime = sentTime;
-    }
-    public String getUserEmail(){
-        return this.userEmail;
     }
     public String getMessageContent(){
         return this.messageContent;
     }
     public String getSentTime(){
         return this.sentTime;
-    }
-    public boolean setUserEmail(String newEmail){
-        if(newEmail != null){
-           this.userEmail = newEmail;
-           return true;
-       }
-       return false;
     }
     public boolean setMessageContent(String newMessage){
         if(newMessage != null){

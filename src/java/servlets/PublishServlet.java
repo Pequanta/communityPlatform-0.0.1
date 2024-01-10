@@ -4,9 +4,9 @@
  */
 package servlets;
 
+import dataContainers.Publication;
 import dataContainers.UserInfo;
 import databaseHandlers.CreateConnection;
-import databaseHandlers.DataBaseInformationQueries;
 import databaseHandlers.DataBasePublicationQueries;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
@@ -15,10 +15,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.ArrayList;
 
 /**
  *
@@ -47,14 +45,16 @@ public class PublishServlet extends HttpServlet {
             Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
             
             DataBasePublicationQueries inst = new DataBasePublicationQueries(cont);
-            
-            out.println("<h1>Hello world</h1>");
-            ArrayList<String> allPublication = inst.allPublications();
-            request.setAttribute("publicationCont", allPublication);
+            String pubText = request.getParameter("pubText");
+            String pubTitle = request.getParameter("pubTitle");
+            UserInfo senderInfo = (UserInfo) request.getSession().getAttribute("person");
+            System.out.println("check: " + pubText);
+            System.out.println("check: " + pubTitle);
+            inst.addPublication(new Publication(pubText, "11:30", pubTitle), senderInfo.getEmail());
             cont.close();
             dispatcher.forward(request, response);
         }catch(Exception e){
-                
+            e.printStackTrace();
         }
     }
 

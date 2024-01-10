@@ -12,20 +12,7 @@
         <link rel="stylesheet" type="text/css" href="styles.css" />
     </head>
     <body class="main_body">
-        <center>
-            <header class="header">
-                <nav>
-                    <%
-                        String[] links = {"home.jsp", "publication_page.jsp" , "chat_room.jsp", "Resources.jsp"};
-                        String[] pageNames = {"Home", "Publication", "Discussion", "Resources"};
-                        for(int j = 0; j < links.length;j++){
-                    %>
-                    <a href=<%=links[j]%>><%=pageNames[j] %></a>
-                    <%
-                        }
-                    %>
-                </nav>
-            </header>         
+        <center>         
                 <a href="signin.jsp">Sign In</a>
                 <a href="signup.jsp">Sign Up</a>
         </center>

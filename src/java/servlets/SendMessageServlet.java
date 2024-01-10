@@ -55,18 +55,13 @@ public class SendMessageServlet extends HttpServlet {
                 
                 UserInfo senderInfo = (UserInfo) request.getSession().getAttribute("person");
                 //The time argument for chat info hasn't been handled and the dummy argument is used for now!!! 
-                ChatInfo chatInfo = new ChatInfo(senderInfo.getEmail(), newMessage, "11:30");
+                ChatInfo chatInfo = new ChatInfo(newMessage, "11:30");
                 //out.println("<h1> Hello world</h1>");
                 System.out.println(senderInfo.getEmail());
-                inst.addChat(chatInfo);
-                ArrayList contMessageList = inst.allMessages();
-                ArrayList contUsers = users.allUsers();
+                inst.addChat(chatInfo , senderInfo.getEmail());
                 
                 //I couldn't set an array for the recived argument from the jsp file. And for the time being strings are serving as a place holder
                 //The optimal solution is to return an array for the caller tag in chat_room.jsp and build a div for the response.
-                request.setAttribute("user_t", users.getUserInfoByEmail(chatInfo.getUserEmail()).getFname());
-                request.setAttribute("users",contUsers);
-                request.setAttribute("sentMessage", contMessageList);
                 cont.close();
                 dispatcher.forward(request, response);
             }catch(Exception e){

@@ -22,7 +22,15 @@
     </servlet>
     <servlet>
         <servlet-name>DisplayPublicationServlet</servlet-name>
-        <servlet-class>DisplayPublicationServlet</servlet-class>
+        <servlet-class>servlets.DisplayPublicationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserDisplayServlet</servlet-name>
+        <servlet-class>servlets.UserDisplayServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MessageLoadServlet</servlet-name>
+        <servlet-class>servlets.MessageLoadServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterUser</servlet-name>
@@ -47,6 +55,14 @@
     <servlet-mapping>
         <servlet-name>DisplayPublicationServlet</servlet-name>
         <url-pattern>/DisplayPublicationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserDisplayServlet</servlet-name>
+        <url-pattern>/UserDisplayServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MessageLoadServlet</servlet-name>
+        <url-pattern>/MessageLoadServlet</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>home.jsp</welcome-file>

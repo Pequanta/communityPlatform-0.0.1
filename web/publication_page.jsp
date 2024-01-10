@@ -14,7 +14,7 @@
         <title>Publication</title>
         <link rel="stylesheet" type="text/css" href="styles.css" />
     </head>
-    <body>
+    <body id="pubPageFirst">
         <center>
             <header class="header">
                 <nav>
@@ -30,10 +30,10 @@
                 </nav>
             </header>
             <form action="PublicationPageServlet">
-                <input type="submit" name="publicationPage" value="Publicaiton Page" />
+                <input type="submit" name="publicationPage" value="Publicaiton Page" class="pubPageLinks"/>
             </form>
             <form action="PublishServlet">
-                <input type="submit" name="publishPage" value="Publishing Page" />
+                <input type="submit" name="publishPage" value="Publishing Page" class="pubPageLinks"/>
             </form>
         </center>
         

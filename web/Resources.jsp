@@ -29,6 +29,11 @@ w<%--
             </header>
                 <div class="resourcePage">
                     <div class="universityWebsites">
+                        <ul id="sites">
+                            <li><a href="http://www.aait.edu.et/">AAiT main</a></li>
+                            <li><a href="http://www.aau.edu.et/">AAU main</a></li>
+                            <li><a href="https://www.facebook.com/sece.aait">AAiT@facebook</a></li>
+                        </ul>
                     </div>
                     <div class="universityWebsites">
                     </div>

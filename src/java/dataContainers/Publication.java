@@ -9,21 +9,16 @@ package dataContainers;
  * @author quantap
  */
 public class Publication {
-    private String authorEmail, publicationTime, publicationText, publicationTitle;
+    private String publicationTime, publicationText, publicationTitle;
     public Publication(){
-        this.authorEmail = "Test";
         this.publicationText = "Test";
         this.publicationTime = "Test";
         this.publicationTitle = "Test";
     }
-    public Publication(String authorEmail, String publicationText, String publicationTime, String publicationTitle){
-        this.authorEmail = authorEmail;
+    public Publication(String publicationText, String publicationTime, String publicationTitle){
         this.publicationText = publicationText;
         this.publicationTime = publicationTime;
         this.publicationTitle = publicationTitle;
-    }
-    public String getAuthorEmail(){
-        return this.authorEmail;
     }
     public String getPublicationText(){
         return this.publicationText;
@@ -33,13 +28,6 @@ public class Publication {
     }
     public String getPublicationTitle(){
         return this.publicationTitle;
-    }
-    public boolean setAuthorEmail(String newAuthorEmail){
-        if(newAuthorEmail != null){
-           this.authorEmail = newAuthorEmail;
-           return true;
-       }
-       return false;
     }
     public boolean setPublicationText(String newPublicationText){
         if(newPublicationText != null){

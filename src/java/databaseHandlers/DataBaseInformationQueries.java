@@ -90,7 +90,7 @@ public class DataBaseInformationQueries {
         return rows > 0;
     }
     public UserInfo getUserInfoById(int userId){
-        String getUserInfoStatement = "SELECT * FROM community_user WHERE user_id = '" + userId + "'";
+        String getUserInfoStatement = "SELECT * FROM community_user WHERE user_id = " + userId;
         try{
             resultCont = statementInst.executeQuery(getUserInfoStatement);
             if(resultCont.next()){
@@ -125,12 +125,16 @@ public class DataBaseInformationQueries {
         return null;
         
     }
-       
+//       
 //    public static void main(String[] args){
 //        try{
 //            CreateConnection cInst = new CreateConnection();
 //            Connection con = DriverManager.getConnection(cInst.getUrl() + cInst.getDatabase(), cInst.getUser(), cInst.getPassword());
 //            DataBaseInformationQueries inst = new DataBaseInformationQueries(con);
+//            //String fname, lname, institute, email, password;
+//            System.out.println(inst.addUser(new UserInfo("peniel", "yohannes","aait", "penielyohannes6@gmail.com", "asdf", 0)));
+//            System.out.println(inst.addUser(new UserInfo("another", "user","aait", "penielyohannes@gmail.com", "asdf", 0)));
+//            System.out.println(inst.addUser(new UserInfo("another", "admin","aait", "penielyohannes0@gmail.com", "asdf", 0)));
 //            System.out.println(inst.allUsers());
 //        }catch(Exception e){
 //            e.printStackTrace();
