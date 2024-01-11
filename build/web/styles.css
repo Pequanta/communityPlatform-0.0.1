@@ -10,6 +10,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 body{
     margin-top: 5%;
+    background-color: white;
+    background-image: url('bg.png');
+    color: white;
 }
 
 .signin_page{
@@ -18,14 +21,12 @@ body{
 }
 
 .sign_page{
-    background: #80c1ff;
     font-family: 'Dancing Script', cursive;
-    
 }
 .users_box{
     width: 30%;
     height: 800px;
-    background-color: #ccffcc;
+    background-color: black;
     float: right;
     border-radius: 5%;
     font-size: 100px;
@@ -34,14 +35,13 @@ body{
     overflow: auto;
 }
 .chat_box{
-    height: 800px;
     width: 70%;
-    background-color: black;
+    background-color: gray;
     float: left;
     border-radius: 5%; 
 }
 .chat_display{
-    background-color: gray;
+    background-color: black;
     width: 80%;
     height:700px;
     font-size: 100px;
@@ -52,53 +52,129 @@ body{
 .message_box{
     width: 50%;
     height: 50px;
-    position: absolute;
     bottom: 0;
     margin-bottom: 20px;
-    margin-left: -25%;
     border-radius: 20%;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400; /* Normal */
     font-size: 50;
 }
 .send_message{
-    position: absolute;
     bottom: 0;
+    height: 50px;
     margin-bottom: 37px;
-    margin-left: 27%;
-    width: 5%;
+    width: 10%;
     border-radius: 40%;
 }
 .header{
-    /*position: absolute;*/
-    /*right: 10px;*/
-    /*top: 50px;*/
-    /*display: block;*/
+    font-size: 40px;
+    color: white;
+    text-decoration: none;
     width: 40vw;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding-bottom: 40px;
-    padding-bottom: 40px;
-    padding-top: -20px;
+}
+.header:hover{
+    color: yellow;
+    text-decoration: black;
+    
 }
 .sent_m{
-    width: 40%;
-    height: 100px;
-    background-color: #ffffcc;
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 100px;
-    margin-left:200px;
+    width: 70%;
+    height: 800px;
+    background-color: gray;
     border-radius: 10%;
+    overflow: auto;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400; /* Normal */
+    font-size: 50px;  
+    
 }
 
 .user_disp{
     width: 90%;
     height: 80px;
-    background-color:#80c1ff;
+    background-color:white;
     border-radius: 10%;
+}
+
+.messageDiv{
+    background-color: black; 
+    border: 5px;
+    border-radius: 20px;
+    opacity: 0.2;
+}
+.userDiv{
+    background-color: gray;
+    border: 5px;
+    border-radius: 20px;
+    
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400; /* Normal */
+    font-size: 50px; 
+}
+.publicationPage{
+    background-color: black;
+    color: white;
+    height: 800px;
+    width: 60%;
+    float: right;
+}
+
+.publicationEach{
+    width: 70%; 
+    height: 700px;
+}
+
+.allPublications{
+        background-color: black;
+        height: 800px;
+        width: 40%;
+        float: left;
+        overflow: auto;
+}
+
+.resourcePage{
+    width: 90%;
+    height: 800px;
+    background-color: black;
+}
+
+.titles{
+    width:100%;
+}
+
+#dispPub{
+    color: white;
+    background-color: black;
+    width: 80%;
+    font-size: 15px;
+    height: 200px;
+    border-radius: 20%;
+}
+
+.sites{
+    text-decoration: none;
+    font-size: 50px;
+}
+
+.authorInfo{
+    margin-left: 50%;
+    margin-bottom: -10px;
+    gap: 0px;
+}
+
+#pubPageFirst{
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    margin-top: 100px;
+}
+.pubPageLinks{
+    color: #ffffcc;
+    background-color: black;
+    font-size: 40px;
+    width: 60%;     
+}
+.pubPageLinks:hover{
+    color: black;
+    background-color: #ffffcc;
 }

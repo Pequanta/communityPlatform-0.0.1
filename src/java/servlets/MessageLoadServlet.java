@@ -4,11 +4,8 @@
  */
 package servlets;
 
-import dataContainers.Publication;
-import dataContainers.UserInfo;
 import databaseHandlers.CreateConnection;
-import databaseHandlers.DataBasePublicationQueries;
-import jakarta.servlet.RequestDispatcher;
+import databaseHandlers.DataBaseDiscussionQueries;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -17,12 +14,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.ArrayList;
 
 /**
  *
  * @author quantap
  */
-public class PublishServlet extends HttpServlet {
+public class MessageLoadServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,22 +35,16 @@ public class PublishServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try{
-            PrintWriter out = response.getWriter();
-            
-            RequestDispatcher dispatcher = request.getRequestDispatcher("publisher.jsp");
             CreateConnection instCon = new CreateConnection();
             Class.forName("com.mysql.cj.jdbc.Driver");
+
             Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
+
+            DataBaseDiscussionQueries inst = new DataBaseDiscussionQueries(cont);
             
-            DataBasePublicationQueries inst = new DataBasePublicationQueries(cont);
-            String pubText = request.getParameter("pubText");
-            String pubTitle = request.getParameter("pubTitle");
-            UserInfo senderInfo = (UserInfo) request.getSession().getAttribute("person");
-            System.out.println("check: " + pubText);
-            System.out.println("check: " + pubTitle);
-            inst.addPublication(new Publication(pubText, "11:30", pubTitle), senderInfo.getEmail());
-            cont.close();
-            dispatcher.forward(request, response);
+            ArrayList contMessageList = inst.allMessages();
+            
+            request.setAttribute("sentMessage", contMessageList);
         }catch(Exception e){
             e.printStackTrace();
         }

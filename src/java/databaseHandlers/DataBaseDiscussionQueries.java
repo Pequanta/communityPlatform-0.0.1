@@ -1,11 +1,7 @@
-package databaseHandlers;
+  package databaseHandlers;
 
 import dataContainers.ChatInfo;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 /*
@@ -18,7 +14,7 @@ import java.util.ArrayList;
  * @author quantap
  */
 public class DataBaseDiscussionQueries {
-     Statement statementInst;
+    Statement statementInst;
     ResultSet resultCont;
     public Connection con;
     public DataBaseDiscussionQueries(Connection con) throws SQLException{
@@ -30,14 +26,22 @@ public class DataBaseDiscussionQueries {
     public Connection getConnection(){
         return this.con;
     }
-    public boolean addChat(ChatInfo messageData){
+    public boolean addChat(ChatInfo messageData, String userEmail){
         int rows = 0;
-        String values =  messageData.getSentTime()  + "', '" +messageData.getMessageContent() + "', '" + messageData.getUserEmail();
         
-            String addChatStatement ="INSERT INTO message_table VALUES (0, '" + values+"')";
-        System.out.println(addChatStatement);
+        String values =  messageData.getSentTime()  + "', '" +messageData.getMessageContent();
+        String addChatStatement ="INSERT INTO message_table VALUES (0, '" + values+"'";
+        String getId = "SELECT * FROM community_user WHERE UPPER(user_email) = '"+ userEmail.toUpperCase() + "'"; 
+        int user_id = -1;
+        
+        
         try{
-           rows = statementInst.executeUpdate(addChatStatement);
+            resultCont = statementInst.executeQuery(getId);
+            if(resultCont.next()) user_id = resultCont.getInt("user_id");
+            System.out.println(addChatStatement + "," + user_id + ")");
+           rows = statementInst.executeUpdate(addChatStatement + "," + user_id + ")");
+           
+           System.out.println("ADDed one chat");
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -61,9 +65,23 @@ public class DataBaseDiscussionQueries {
         String checkUserExistStatement = "SELECT * FROM message_table";
         ArrayList<String> messagesFound = new ArrayList<>();
         try{
+            ResultSet userData;
+            Statement userStat = con.createStatement();
             resultCont = statementInst.executeQuery(checkUserExistStatement);
+            String user_name = "test";
             while(resultCont.next()){
-                messagesFound.add(resultCont.getString("message_content"));
+                
+                String getUser = "SELECT * FROM community_user WHERE user_id = "+ resultCont.getInt("user_id");
+                System.out.println(resultCont.getInt("user_id"));
+                String message = resultCont.getString("message_content");
+                System.out.println(message);
+                userData = userStat.executeQuery(getUser);
+                if(userData.next()){
+                    user_name = userData.getString("user_f_name");
+                    System.out.println("Checked");
+                    System.out.println(user_name);
+                }
+                messagesFound.add(user_name + "," + message);
             }
             return messagesFound;
         }catch(Exception e){
@@ -71,13 +89,12 @@ public class DataBaseDiscussionQueries {
         }
         return null;
     }
-    public ChatInfo messageInfo(String messageContent){
-        String userInfoStatement = "SELECT * FROM message_table WHERE UPPER(message_content) = '" + messageContent.toUpperCase()+"'";
+    public ChatInfo messageInfo(int messageId){
+        String userInfoStatement = "SELECT * FROM message_table message_id = " + messageId;
         try{
             resultCont = statementInst.executeQuery(userInfoStatement);
             if(resultCont.next()){
-                return new ChatInfo(resultCont.getString("user_email"),
-                        resultCont.getString("message_content"),
+                return new ChatInfo(resultCont.getString("message_content"),
                         resultCont.getString("message_time"));
             }
             else return null;
@@ -86,39 +103,54 @@ public class DataBaseDiscussionQueries {
         }
         return null;
     }
-    public boolean removeChat(ChatInfo messageData){
+    public boolean removeChat(ChatInfo messageData, String userEmail){
         int rows = 0;
-        String removeUserStatement = "DELETE FROM message_table WHERE UPPER(user_email) = '" + messageData.getUserEmail().toUpperCase()+"' AND UPPER(message_content) = '" + messageData.getMessageContent().toUpperCase()+"'";
+        String getId = "SELECT * FROM community_user WHERE UPPER(user_email) = '"+ userEmail.toUpperCase() + "'";  
+        int userId = -1;
         try{
+            resultCont = statementInst.executeQuery(getId);
+            userId = resultCont.getInt("user_id");
+            String removeUserStatement = "DELETE FROM message_table WHERE user_id = " + userId +" AND UPPER(message_content) = '" + messageData.getMessageContent().toUpperCase()+"'";
             rows = statementInst.executeUpdate(removeUserStatement);
         }catch(Exception e){
             e.printStackTrace();
         }
         return rows > 0;
     }
+   
     
-    public static void main(String[] args){
+    //The following piece of should be removed in time of deployement;
+
+    public boolean clearChat(){
+        String clearChatStatement = "DELETE FROM message_table";
+        int rows = 0;
         try{
-            CreateConnection createInst = new CreateConnection();
-            Connection con = DriverManager.getConnection(createInst.getUrl() + createInst.getDatabase(), createInst.getUser(), createInst.getPassword());
-            DataBaseDiscussionQueries inst = new DataBaseDiscussionQueries(con);
-            
-            ChatInfo chat = new ChatInfo("Penielyohannes6@gmail.com", "Hello there, How are you?", "11:30");
-            ChatInfo chat2 = new ChatInfo("Someone@gmail.com", "fine , how are u?", "11:31");
-            ChatInfo chat3 = new ChatInfo("Penielyohannes6@gmail.com", "good!, whats up", "11:33");
-            ChatInfo chat4 = new ChatInfo("Someone@gmail.com", "Not much!", "11:34");
-            ChatInfo chat5 = new ChatInfo("Someone@gmail.com", "Not much! whats up with u?", "11:34");
-//            System.out.println(inst.addChat(chat));
-//            System.out.println(inst.addChat(chat2));
-//            System.out.println(inst.addChat(chat3));
-//            System.out.println(inst.addChat(chat4));
-//            System.out.println(inst.addChat(chat3));
-//            System.out.println(inst.addChat(chat5));
-            System.out.println(inst.messageInfo(chat4.getMessageContent()).getUserEmail());
-            System.out.println(inst.allMessages().toString());
+            rows = statementInst.executeUpdate(clearChatStatement);
         }catch(Exception e){
-            
+            e.printStackTrace();
         }
-        
+        return rows > 0;
     }
+
+//    public static void main(String[] args){
+//        try{
+//            CreateConnection createInst = new CreateConnection();
+//            Connection con = DriverManager.getConnection(createInst.getUrl() + createInst.getDatabase(), createInst.getUser(), createInst.getPassword());
+//            DataBaseDiscussionQueries inst = new DataBaseDiscussionQueries(con);
+//            
+////            inst.addChat(new ChatInfo("hi there" , "11:30"), "PenielYohannes6@gmail.com");
+////            inst.addChat(new ChatInfo("hallo" , "11:32"), "PenielYohannes@gmail.com");
+////            inst.addChat(new ChatInfo("see ya" , "11:34"), "PenielYohannes0@gmail.com");
+////            inst.addChat(new ChatInfo("hallo" , "11:32"), "PenielYohannes@gmail.com");
+////            inst.addChat(new ChatInfo("hi there" , "11:30"), "PenielYohannes6@gmail.com");
+////            inst.addChat(new ChatInfo("see ya" , "11:34"), "PenielYohannes0@gmail.com");
+//            inst.allMessages();
+////            System.out.println(inst.clearChat());
+////            System.out.println(inst.allMessages());
+//            
+//        }catch(Exception e){
+//            
+//        }
+//        
+//    }
 }

@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="jservlets.*"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,13 +14,13 @@
         <title>Publication</title>
         <link rel="stylesheet" type="text/css" href="styles.css" />
     </head>
-    <body>
+    <body id="pubPageFirst">
         <center>
             <header class="header">
                 <nav>
                     <%
-                        String[] links = {"home.jsp", "publication_page.jsp" , "chat_room.jsp", "Resources.jsp"};
-                        String[] pageNames = {"Home", "Publication", "Discussion", "Resources"};
+                        String[] links = {"publication_page.jsp" , "chat_room.jsp", "Resources.jsp"};
+                        String[] pageNames = {"Publication", "Discussion", "Resources"};
                         for(int j = 0; j < links.length;j++){
                     %>
                     <a href=<%=links[j]%>><%=pageNames[j] %></a>
@@ -27,7 +29,13 @@
                     %>
                 </nav>
             </header>
-            <h1>Publication</h1>
+            <form action="PublicationPageServlet">
+                <input type="submit" name="publicationPage" value="Publicaiton Page" class="pubPageLinks"/>
+            </form>
+            <form action="PublishServlet">
+                <input type="submit" name="publishPage" value="Publishing Page" class="pubPageLinks"/>
+            </form>
         </center>
+        
     </body>
 </html>

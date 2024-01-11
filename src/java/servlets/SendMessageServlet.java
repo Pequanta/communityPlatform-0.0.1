@@ -39,32 +39,33 @@ public class SendMessageServlet extends HttpServlet {
             throws ServletException, IOException {
         
         response.setContentType("text/html;charset=UTF-8");
-       
+        PrintWriter out = response.getWriter();
         try{
-                PrintWriter out = response.getWriter();
+                
                 String newMessage = request.getParameter("message");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("chat_room.jsp");
                 CreateConnection instCon = new CreateConnection();
                 Class.forName("com.mysql.cj.jdbc.Driver");
+                
                 Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
+                
                 DataBaseDiscussionQueries inst = new DataBaseDiscussionQueries(cont);
+                DataBaseInformationQueries users = new DataBaseInformationQueries(cont);
                 
                 
                 UserInfo senderInfo = (UserInfo) request.getSession().getAttribute("person");
-                out.println("<h1> Hello world </h1>");
-                out.println("<h1>" + senderInfo.getEmail() +"</h1>");
-                ChatInfo chatInfo = new ChatInfo(senderInfo.getEmail(), newMessage, "11:30");
+                //The time argument for chat info hasn't been handled and the dummy argument is used for now!!! 
+                ChatInfo chatInfo = new ChatInfo(newMessage, "11:30");
+                //out.println("<h1> Hello world</h1>");
+                System.out.println(senderInfo.getEmail());
+                inst.addChat(chatInfo , senderInfo.getEmail());
                 
-                inst.addChat(chatInfo);
-                String contMessage = "";
-                ArrayList contMessageList = inst.allMessages();
-                for(int i = 0; i < contMessageList.size();i++){
-                    contMessage += contMessageList.get(i);
-                }
-                out.println("<h1>" + contMessage+"</h1>");
-                request.setAttribute("sentMessage", contMessage +"\n");
+                //I couldn't set an array for the recived argument from the jsp file. And for the time being strings are serving as a place holder
+                //The optimal solution is to return an array for the caller tag in chat_room.jsp and build a div for the response.
+                cont.close();
                 dispatcher.forward(request, response);
             }catch(Exception e){
+                
                 e.printStackTrace();
             }
         

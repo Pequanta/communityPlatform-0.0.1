@@ -1,4 +1,4 @@
-<%-- 
+w<%-- 
     Document   : Resources
     Created on : Dec 24, 2023, 8:26:52 AM
     Author     : quantap
@@ -17,8 +17,8 @@
             <header class="header">
                 <nav>
                     <%
-                        String[] links = {"home.jsp", "publication_page.jsp" , "chat_room.jsp", "Resources.jsp"};
-                        String[] pageNames = {"Home", "Publication", "Discussion", "Resources"};
+                        String[] links = {"publication_page.jsp" , "chat_room.jsp", "Resources.jsp"};
+                        String[] pageNames = {"Publication", "Discussion", "Resources"};
                         for(int j = 0; j < links.length;j++){
                     %>
                     <a href=<%=links[j]%>><%=pageNames[j] %></a>
@@ -27,8 +27,17 @@
                     %>
                 </nav>
             </header>
-            
-            <h1>Resource Page</h1>
+                <div class="resourcePage">
+                    <div class="universityWebsites">
+                        <ul id="sites">
+                            <li><a href="http://www.aait.edu.et/">AAiT main</a></li>
+                            <li><a href="http://www.aau.edu.et/">AAU main</a></li>
+                            <li><a href="https://www.facebook.com/sece.aait">AAiT@facebook</a></li>
+                        </ul>
+                    </div>
+                    <div class="universityWebsites">
+                    </div>
+                </div>
         </center>
     </body>
 </html>

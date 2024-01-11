@@ -11,7 +11,7 @@ package databaseHandlers;
 
 import dataContainers.UserInfo;
 import java.sql.*;
-
+import java.util.ArrayList;
 
 public class DataBaseInformationQueries {
     Statement statementInst;
@@ -47,7 +47,7 @@ public class DataBaseInformationQueries {
         }
         return false;
     }
-    public UserInfo userInfo(String email){
+    public UserInfo getUserInfoByEmail(String email){
         String userInfoStatement = "SELECT * FROM community_user WHERE UPPER(user_email) = '" + email.toUpperCase()+"'";
         try{
             resultCont = statementInst.executeQuery(userInfoStatement);
@@ -65,6 +65,20 @@ public class DataBaseInformationQueries {
         }
         return null;
     }
+    public ArrayList allUsers(){
+        String allUsersStatement = "SELECT * FROM community_user";
+        ArrayList<String> usersC = new ArrayList<>();
+        try{
+            resultCont = statementInst.executeQuery(allUsersStatement);
+            while(resultCont.next()){
+                usersC.add(resultCont.getString("user_f_name") + " " + resultCont.getString("user_l_name"));
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return usersC;
+    }
     public boolean removeUser(UserInfo userData){
         int rows = 0;
         String removeUserStatement = "DELETE FROM community_user WHERE user_email = '" + userData.getEmail()+"'";
@@ -75,5 +89,56 @@ public class DataBaseInformationQueries {
         }
         return rows > 0;
     }
-    
+    public UserInfo getUserInfoById(int userId){
+        String getUserInfoStatement = "SELECT * FROM community_user WHERE user_id = " + userId;
+        try{
+            resultCont = statementInst.executeQuery(getUserInfoStatement);
+            if(resultCont.next()){
+                return new UserInfo(resultCont.getString("user_f_name"),
+                        resultCont.getString("user_l_name"),
+                        resultCont.getString("user_institute"),
+                        resultCont.getString("user_email"),
+                        resultCont.getString("user_password"),
+                        resultCont.getInt("user_education_level"));
+            }
+            else return null;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public UserInfo getUserId(String email){
+        String getUserIdStatement = "SELECT * FROM community_user WHERE UPPER(user_email) = '" + email.toUpperCase() + "'";
+        try{
+            resultCont = statementInst.executeQuery(getUserIdStatement);
+            if(resultCont.next()){
+                return new UserInfo(resultCont.getString("user_f_name"),
+                        resultCont.getString("user_l_name"),
+                        resultCont.getString("user_institute"),
+                        resultCont.getString("user_email"),
+                        resultCont.getString("user_password"),
+                        resultCont.getInt("user_education_level"));
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+        
+    }
+//       
+//    public static void main(String[] args){
+//        try{
+//            CreateConnection cInst = new CreateConnection();
+//            Connection con = DriverManager.getConnection(cInst.getUrl() + cInst.getDatabase(), cInst.getUser(), cInst.getPassword());
+//            DataBaseInformationQueries inst = new DataBaseInformationQueries(con);
+//            //String fname, lname, institute, email, password;
+//            System.out.println(inst.addUser(new UserInfo("peniel", "yohannes","aait", "penielyohannes6@gmail.com", "asdf", 0)));
+//            System.out.println(inst.addUser(new UserInfo("another", "user","aait", "penielyohannes@gmail.com", "asdf", 0)));
+//            System.out.println(inst.addUser(new UserInfo("another", "admin","aait", "penielyohannes0@gmail.com", "asdf", 0)));
+//            System.out.println(inst.allUsers());
+//        }catch(Exception e){
+//            e.printStackTrace();
+//        }
+//        
+//    }
 }

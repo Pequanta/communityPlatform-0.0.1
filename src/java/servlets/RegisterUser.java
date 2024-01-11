@@ -6,6 +6,7 @@ package servlets;
 import databaseHandlers.DataBaseInformationQueries;
 import dataContainers.UserInfo;
 import databaseHandlers.CreateConnection;
+import importantUtils.UserInputValidate;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -43,14 +44,41 @@ public class RegisterUser extends HttpServlet {
                 UserInfo userData = new UserInfo(userFullName[0], userFullName[1],userInstitute, userEmail, userPassword, Integer.parseInt(userEducationLevel));
                 CreateConnection instCon = new CreateConnection();
                 Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
-                DataBaseInformationQueries inst = new DataBaseInformationQueries(cont);
-                inst.addUser(userData);
-                out.println("Successfully signed up!");
-                out.println("<a href=signin.jsp>SignIn</a>");
+                try (Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword())) {
+                    DataBaseInformationQueries inst = new DataBaseInformationQueries(cont);
+                    
+                    //User credentials are analysed with the following logic;
+                    //First validation will be about input validation and the second will be about the users legitmacy for registration;
+                    //This include whether the user has already been registered or whether the user is student or professional
+                    
+                    
+                    //One problem seems to be hard to reach though
+                    //The question that "Who is authorized to have professional account ?" is not answered with this logic.
+                    if(UserInputValidate.validEmail(userEmail) && UserInputValidate.validName(userName) && !inst.checkUserExist(userData)){
+                        inst.addUser(userData);
+                        out.println("<h1>Successfully signed up</h1>");
+                        out.println("<a href=\"signin.jsp\"><h1>Signin</h1></a>");
+                    }else if(!UserInputValidate.validName(userName)){
+                        out.println("<h1>Invalid Name</h1>");
+                        out.println("<a href=\"signup.jsp\"><h1>TryAgain!</h1></a>");
+                    }else if(!UserInputValidate.validEmail(userEmail)){
+                        out.println("<h1>Invalid Email</h1>");
+                        out.println("<a href=\"signup.jsp\"><h1>TryAgain!</h1></a>");
+                    }else if(inst.checkUserExist(userData)){
+                        out.println("<h1>User alread exists</h1>");
+                        out.println("<a href=\"signin.jsp\"><h1>Sign in</h1></a>");
+                    }else{
+                        out.println("<h1>Invalid Credentials</h1>");
+                        out.println("<a href=\"signup.jsp\"><h1>TryAgain!</h1></a>");
+                    }
+                }
+                //User credentials are analysed with the following logic;
+                //First validation will be about input validation and the second will be about the users legitmacy for registration;
+                //This include whether the user has already been registered or whether the user is student or professional
             }catch(Exception e){
                 e.printStackTrace();
             }
+            
     }
             
     @Override

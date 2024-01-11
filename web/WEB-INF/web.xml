@@ -16,6 +16,22 @@
         <servlet-name>PublishServlet</servlet-name>
         <servlet-class>servlets.PublishServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PublicationPageServlet</servlet-name>
+        <servlet-class>servlets.PublicationPageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DisplayPublicationServlet</servlet-name>
+        <servlet-class>servlets.DisplayPublicationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserDisplayServlet</servlet-name>
+        <servlet-class>servlets.UserDisplayServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MessageLoadServlet</servlet-name>
+        <servlet-class>servlets.MessageLoadServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterUser</servlet-name>
         <url-pattern>/RegisterUser</url-pattern>
@@ -32,7 +48,23 @@
         <servlet-name>PublishServlet</servlet-name>
         <url-pattern>/PublishServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PublicationPageServlet</servlet-name>
+        <url-pattern>/PublicationPageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplayPublicationServlet</servlet-name>
+        <url-pattern>/DisplayPublicationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserDisplayServlet</servlet-name>
+        <url-pattern>/UserDisplayServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MessageLoadServlet</servlet-name>
+        <url-pattern>/MessageLoadServlet</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>main.jsp</welcome-file>
+        <welcome-file>home.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
