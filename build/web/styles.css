@@ -9,11 +9,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 body{
     margin-top: 0px;
-    background-color: #333333;
     background-size: contain;
-    background-image: url('logo.png') no-repeat;
+    background: url('logo.png') no-repeat;
     color: white;
-    
     
 }
 
