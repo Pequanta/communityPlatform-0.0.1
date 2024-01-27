@@ -26,20 +26,22 @@
         
         <center>
               <header class="header">
+                  <img class="logo" src="logo.jpg" alt="logo"> 
                   <nav>
-                      <%
-                          String[] links = {"publication_page.jsp" , "chat_room.jsp", "Resources.jsp"};
-                          String[] pageNames = {"Publication", "Discussion", "Resources"};
-                          for(int j = 0; j < links.length;j++){
-                      %>
-                      <a href=<%=links[j]%>><%=pageNames[j] %></a>
-                      <%
-                          }
-                      %>
+                      <ul class="nav_bar">
+                        <%
+                            String[] links = {"publication_page.jsp" , "chat_room.jsp", "Resources.jsp"};
+                            String[] pageNames = {"Publication", "Discussion", "Resources"};
+                            for(int j = 0; j < links.length;j++){
+                        %>
+                        <li><a href=<%=links[j]%>><%=pageNames[j] %></a><li>
+                        <%
+                            }
+                        %>
+                    </ul>
                   </nav>
+                  <a class="about_link" href="#"><button>About</button></a>
               </header>
-
-              <h1>Chat Room</h1>
               <div class="chat_box">
                   <div class="chat_display">
                       <div class="sent_m">

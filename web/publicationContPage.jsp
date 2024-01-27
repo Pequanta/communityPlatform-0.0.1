@@ -17,18 +17,22 @@
     <body>
         <center>
             <header class="header">
-                <nav>
-                    <%
-                        String[] links = {"publication_page.jsp" , "chat_room.jsp", "Resources.jsp"};
-                        String[] pageNames = {"Publication", "Discussion", "Resources"};
-                        for(int j = 0; j < links.length;j++){
-                    %>
-                    <a href=<%=links[j]%>><%=pageNames[j] %></a>
-                    <%
-                        }
-                    %>
-                </nav>
-            </header>
+                  <img class="logo" src="logo.jpg" alt="logo"> 
+                  <nav>
+                      <ul class="nav_bar">
+                        <%
+                            String[] links = {"publication_page.jsp" , "chat_room.jsp", "Resources.jsp"};
+                            String[] pageNames = {"Publication", "Discussion", "Resources"};
+                            for(int j = 0; j < links.length;j++){
+                        %>
+                        <li><a href=<%=links[j]%>><%=pageNames[j] %></a><li>
+                        <%
+                            }
+                        %>
+                    </ul>
+                  </nav>
+                  <a class="about_link" href="#"><button>About</button></a>
+              </header>
         </center>
         <form action="DisplayPublicationServlet">
             <div class="publicationPage">

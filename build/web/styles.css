@@ -7,21 +7,76 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : quantap
 */
 
-
 body{
-    margin-top: 5%;
-    background-color: white;
-    background-image: url('bg.png');
+    margin-top: 0px;
+    background-color: #333333;
+    background-size: contain;
+    background-image: url('logo.png') no-repeat;
     color: white;
+    
+    
+}
+
+li, a, button{
+    font-weight: 500;
+    font-size: 50px;
+    color: #ccffcc;
+    text-decoration: none;
+}
+header{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 30px 10%;
+}
+
+.logo{
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    margin-right: auto;
+    border: none;
+    border-radius: 50px;
+}
+
+.nav_bar{
+    list-style: none;
+}
+.nav_bar li{
+    display: inline-block;
+    padding: 0px 20px;
+}
+.nav_bar li a{
+    transition: all 0.3s ease 0s;
+}
+
+.nav_bar li a:hover{
+    color: #80c1ff;
+}
+
+button{
+    padding: 9px 25px;
+    background-color: rgba(0, 130, 160, 0.7);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    
+}
+
+button:hover{
+    padding: 9px 25px;
+    background-color: rgba(0, 130, 160, 0.7);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    
 }
 
 .signin_page{
     display:flex;
     justify-content: center;
-}
-
-.sign_page{
-    font-family: 'Dancing Script', cursive;
 }
 .users_box{
     width: 30%;
@@ -66,17 +121,7 @@ body{
     width: 10%;
     border-radius: 40%;
 }
-.nav_bar{
-    font-size: 40px;
-    color: white;
-    text-decoration: none;
-    width: 40vw;
-}
-.nav_bar:hover{
-    color: yellow;
-    text-decoration: black;
-    
-}
+
 .sent_m{
     width: 70%;
     height: 800px;

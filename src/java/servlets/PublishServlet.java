@@ -40,7 +40,7 @@ public class PublishServlet extends HttpServlet {
         try{
             PrintWriter out = response.getWriter();
             
-            RequestDispatcher dispatcher = request.getRequestDispatcher("publisher.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("publication_page.jsp");
             CreateConnection instCon = new CreateConnection();
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
