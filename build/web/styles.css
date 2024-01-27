@@ -10,6 +10,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 body{
     margin-top: 0px;
     background: url('logo.png') no-repeat;
+    background-size: cover;
     color: white;
     
 }
@@ -69,11 +70,6 @@ button:hover{
     cursor: pointer;
     transition: all 0.3s ease 0s;
     
-}
-
-.signin_page{
-    display:flex;
-    justify-content: center;
 }
 .users_box{
     width: 30%;
