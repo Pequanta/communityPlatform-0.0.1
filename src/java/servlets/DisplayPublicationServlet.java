@@ -49,9 +49,7 @@ public class DisplayPublicationServlet extends HttpServlet {
             
             DataBasePublicationQueries inst = new DataBasePublicationQueries(cont);
             int pub_id = Integer.parseInt(request.getParameter("pubId"));
-            System.out.println("pub_id : " + pub_id);
             Publication pubContent = inst.publicationInfo(pub_id);
-            System.out.println(pubContent.getPublicationText());
             request.setAttribute("content", pubContent.getPublicationText());
             
             ArrayList<String> allPublication = inst.allPublications();

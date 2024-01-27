@@ -16,15 +16,17 @@ w<%--
         <center>
             <header class="header">
                 <nav>
-                    <%
-                        String[] links = {"publication_page.jsp" , "chat_room.jsp", "Resources.jsp"};
-                        String[] pageNames = {"Publication", "Discussion", "Resources"};
-                        for(int j = 0; j < links.length;j++){
-                    %>
-                    <a href=<%=links[j]%>><%=pageNames[j] %></a>
-                    <%
-                        }
-                    %>
+                    <div class="nav_bar">
+                        <%
+                            String[] links = {"publication_page.jsp" , "chat_room.jsp", "Resources.jsp"};
+                            String[] pageNames = {"Publication", "Discussion", "Resources"};
+                            for(int j = 0; j < links.length;j++){
+                        %>
+                        <a href=<%=links[j]%>><%=pageNames[j] %></a>
+                        <%
+                            }
+                        %>
+                    </div>
                 </nav>
             </header>
                 <div class="resourcePage">

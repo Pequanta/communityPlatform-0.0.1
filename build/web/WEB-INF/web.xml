@@ -32,6 +32,10 @@
         <servlet-name>MessageLoadServlet</servlet-name>
         <servlet-class>servlets.MessageLoadServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ToCheck</servlet-name>
+        <servlet-class>servlets.ToCheck</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterUser</servlet-name>
         <url-pattern>/RegisterUser</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>MessageLoadServlet</servlet-name>
         <url-pattern>/MessageLoadServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ToCheck</servlet-name>
+        <url-pattern>/ToCheck</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>home.jsp</welcome-file>

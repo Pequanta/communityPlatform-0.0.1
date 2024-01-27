@@ -36,15 +36,17 @@
                                     continue;
                                 }
                                     if(formEntries[a] == "Education Level"){
+                                        System.out.println(formEntries[a]);
+                                        System.out.println(formNames[a]);
                             %>
                                         <tr>
                                             <td><label><%=formEntries[a] %></label></td>
-                                            <td><select name=<%=formEntries[a]%>>
+                                            <td><select name=<%=formNames[a]%>>
                                                 <optgroup label="Student">
-                                                  <option value="student">0</option>
+                                                  <option value=0>0</option>
                                                 </optgroup>
                                                 <optgroup label="Professional">
-                                                  <option value="professional">1</option>
+                                                  <option value=1>1</option>
                                                 </optgroup>
                                                 </select></td>
 

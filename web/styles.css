@@ -66,13 +66,13 @@ body{
     width: 10%;
     border-radius: 40%;
 }
-.header{
+.nav_bar{
     font-size: 40px;
     color: white;
     text-decoration: none;
     width: 40vw;
 }
-.header:hover{
+.nav_bar:hover{
     color: yellow;
     text-decoration: black;
     
@@ -100,7 +100,7 @@ body{
     background-color: black; 
     border: 5px;
     border-radius: 20px;
-    opacity: 0.2;
+    opacity: 0.2;   
 }
 .userDiv{
     background-color: gray;
