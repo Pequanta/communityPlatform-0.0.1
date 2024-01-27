@@ -12,6 +12,9 @@ body{
     background: url('logo.png') no-repeat;
     background-size: cover;
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
 }
 
@@ -51,7 +54,6 @@ header{
 .nav_bar li a:hover{
     color: #80c1ff;
 }
-
 button{
     padding: 9px 25px;
     background-color: rgba(0, 130, 160, 0.7);
@@ -70,6 +72,11 @@ button:hover{
     cursor: pointer;
     transition: all 0.3s ease 0s;
     
+}
+
+.wrapper{
+    width: 500px;
+    background-color: black;
 }
 .users_box{
     width: 30%;

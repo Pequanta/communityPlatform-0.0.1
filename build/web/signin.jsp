@@ -12,9 +12,9 @@
         <link rel="stylesheet" href="styles.css" />
         <title>Sign In</title>
     </head>
-    <body class="signin sign_page">
+    <body>
         <center>
-            <div class="signing signin">
+            <div class="wrapper">
                     <%
                         String[] formEntries = {"Email","password"};
                         String[] formNames = {"email","password"};
