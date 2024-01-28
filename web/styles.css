@@ -82,7 +82,7 @@ button:hover{
     justify-items: center;
     align-items: center;
     width: 40%;
-    height: 400px;
+    height: 100px;
     background-color: rgba(0, 1, 10, 0.8);
     font-size: 20px;
     font-weight: 500; 
@@ -107,7 +107,7 @@ button:hover{
 }
 .users_box{
     width: 30%;
-    height: 800px;
+    height: 400px;
     background-color: black;
     float: right;
     border-radius: 5%;
