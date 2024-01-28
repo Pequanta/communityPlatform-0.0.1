@@ -46,7 +46,7 @@ public class AuthenticateUser extends HttpServlet {
                 
                 DataBaseInformationQueries inst = new DataBaseInformationQueries(cont);
                 UserInfo userData = inst.getUserInfoByEmail(userEmail);
-                if(UserInputValidate.validEmail(userData.getEmail()) && inst.getUserInfoByEmail(userEmail).getPassword().equals(userPassword)){
+                if(UserInputValidate.validEmail(userData.getEmail()) && userData.getPassword().equals(userPassword)){
                     HttpSession session = request.getSession(true);
                     session.setAttribute("person" , userData);
                     response.sendRedirect("publication_page.jsp");

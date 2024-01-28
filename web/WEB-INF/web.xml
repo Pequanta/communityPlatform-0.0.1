@@ -33,10 +33,6 @@
         <servlet-class>servlets.MessageLoadServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ToCheck</servlet-name>
-        <servlet-class>servlets.ToCheck</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>LogOutServlet</servlet-name>
         <servlet-class>servlets.LogOutServlet</servlet-class>
     </servlet>
@@ -71,10 +67,6 @@
     <servlet-mapping>
         <servlet-name>MessageLoadServlet</servlet-name>
         <url-pattern>/MessageLoadServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ToCheck</servlet-name>
-        <url-pattern>/ToCheck</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogOutServlet</servlet-name>

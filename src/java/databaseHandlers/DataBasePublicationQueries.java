@@ -125,10 +125,6 @@ public class DataBasePublicationQueries {
 //                System.out.println(cont.get(i));
 //            }
 //    //        inst.removePublication(pub2);
-//            cont = inst.allPublications();
-//            for(int i = 0;i < cont.size();i++){
-//                System.out.println(cont.get(i));
-//            }
 //        }catch(Exception e){
 //            e.printStackTrace();
 //        }

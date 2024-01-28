@@ -82,7 +82,7 @@ button:hover{
     justify-items: center;
     align-items: center;
     width: 40%;
-    height: 800px;
+    height: 400px;
     background-color: rgba(0, 1, 10, 0.8);
     font-size: 20px;
     font-weight: 500; 
@@ -128,7 +128,7 @@ button:hover{
 }
 .chat_box{
     width: 70%;
-    height: 1200px;
+    height: 800px;
     background: transparent;
     float: left;
     border-radius: 10px;
@@ -153,7 +153,7 @@ button:hover{
 
 .sent_m{
     width: 70%;
-    height: 1000px;
+    height: 600px;
     background-color: #97a7af;
     overflow: auto;
     font-family: 'Open Sans', sans-serif;
@@ -163,11 +163,11 @@ button:hover{
     
 }
 .users_box{
-    height: 1200px;
+    height: 800px;
 }
 .user_disp{
     width: 90%;
-    height: 1200px;
+    height: 800px;
     background-color:white;
     border-radius: 10%;
     
@@ -211,7 +211,7 @@ button:hover{
 .publicationPage{
     background-color: black;
     color: white;
-    height: 1200px;
+    height: 800px;
     width: 70%;
     float: right;
 }
@@ -224,7 +224,7 @@ button:hover{
 
 .allPublications{
     background-color: #0f212a;
-    height: 1200px;
+    height: 800px;
     width: 30%;
     float: left;
     overflow: auto;

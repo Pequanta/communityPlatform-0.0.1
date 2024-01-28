@@ -40,8 +40,7 @@ public class PublicationPageServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try{
             PrintWriter out = response.getWriter();
-            
-            RequestDispatcher dispatcher = request.getRequestDispatcher("publication_page.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("publicationContPage.jsp");
             CreateConnection instCon = new CreateConnection();
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());

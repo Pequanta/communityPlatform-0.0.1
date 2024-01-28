@@ -76,6 +76,7 @@ public class RegisterUser extends HttpServlet {
                 //First validation will be about input validation and the second will be about the users legitmacy for registration;
                 //This include whether the user has already been registered or whether the user is student or professional
             }catch(Exception e){
+                out.println("<h1>"+ e.getMessage() + "</h1>");
                 e.printStackTrace();
             }
             
