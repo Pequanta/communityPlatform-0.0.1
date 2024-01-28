@@ -29,7 +29,9 @@
                         %>
                     </ul>
                   </nav>
-                  <a class="about_link" href="#"><button>About</button></a>
+                  <form action="LogOutServlet">
+                    <button>Log out</button></a>
+                  </form>
               </header>
                 <div class="resourcePage">
                     <div class="universityWebsites">

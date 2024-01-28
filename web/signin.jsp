@@ -12,23 +12,23 @@
         <link rel="stylesheet" href="styles.css" />
         <title>Sign In</title>
     </head>
-    <body>
+    <body class="sign_page">
         <center>
+            <h1>Community Platform EEEE</h1>
             <div class="wrapper">
                     <%
                         String[] formEntries = {"Email","password"};
                         String[] formNames = {"email","password"};
                     %>
                     <form action="AuthenticateUser">
-                        <h1>Community Platform EEEE</h1>
+                        
                         <table id="table">
                             <% 
                                 for(int a = 0; a < formEntries.length;a++){
                                     if(formEntries[a] == "password"){
                             %>
                                         <tr>
-                                            <td><label><%=formEntries[a] %></label></td>
-                                            <td><input type="password" name=<%=formNames[a]%> /></td> 
+                                            <td><input type="password" name=<%=formNames[a]%> placeholder="password" /></td> 
 
                                         </tr>
                             <%
@@ -36,16 +36,16 @@
                                 }
                             %>
                                     <tr>
-                                        <td><label><%=formEntries[a] %></label></td>
-                                        <td><input type="text" name=<%=formNames[a]%> /></td> 
+                                        <td><input type="text" name=<%=formNames[a]%> placeholder="Email"/></td> 
 
                                     </tr>
                              <%
                                  }
                              %>
-                            <tr><td><input type="submit" name="signin" value="signin"/></td></tr>
+                             <tr><td><button type="submit" name="signin" value="signin">Sign in</button></td></tr>
+                             
                         </table>
-                        <a href="signup.jsp">Sign up</a>
+                        <h1 class="note_labels">Don't have an account? <a href="signup.jsp">Sign up</a></h1>
                     </form>
 
             </div>

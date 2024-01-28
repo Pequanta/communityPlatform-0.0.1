@@ -3,19 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/media/quantap/cd077038-99e4-4618-b3ac-4126f73bcdba/quantap/Documents/groupProject/communityPlatform/communityPlatform-0.0.1/web/signup.jsp</file>
-            <file>file:/media/quantap/cd077038-99e4-4618-b3ac-4126f73bcdba/quantap/Documents/groupProject/communityPlatform/communityPlatform-0.0.1/src/java/servlets/PublicationPageServlet.java</file>
-            <file>file:/media/quantap/cd077038-99e4-4618-b3ac-4126f73bcdba/quantap/Documents/groupProject/communityPlatform/communityPlatform-0.0.1/web/publicationContPage.jsp</file>
-            <file>file:/media/quantap/cd077038-99e4-4618-b3ac-4126f73bcdba/quantap/Documents/groupProject/communityPlatform/communityPlatform-0.0.1/src/java/servlets/RegisterUser.java</file>
-            <file>file:/media/quantap/cd077038-99e4-4618-b3ac-4126f73bcdba/quantap/Documents/groupProject/communityPlatform/communityPlatform-0.0.1/web/publication_page.jsp</file>
             <file>file:/media/quantap/cd077038-99e4-4618-b3ac-4126f73bcdba/quantap/Documents/groupProject/communityPlatform/communityPlatform-0.0.1/src/java/servlets/PublishServlet.java</file>
-            <file>file:/media/quantap/cd077038-99e4-4618-b3ac-4126f73bcdba/quantap/Documents/groupProject/communityPlatform/communityPlatform-0.0.1/src/java/servlets/MessageLoadServlet.java</file>
+            <file>file:/media/quantap/cd077038-99e4-4618-b3ac-4126f73bcdba/quantap/Documents/groupProject/communityPlatform/communityPlatform-0.0.1/src/java/servlets/PublicationPageServlet.java</file>
             <file>file:/media/quantap/cd077038-99e4-4618-b3ac-4126f73bcdba/quantap/Documents/groupProject/communityPlatform/communityPlatform-0.0.1/src/java/servlets/DisplayPublicationServlet.java</file>
-            <file>file:/media/quantap/cd077038-99e4-4618-b3ac-4126f73bcdba/quantap/Documents/groupProject/communityPlatform/communityPlatform-0.0.1/src/java/servlets/ToCheck.java</file>
-            <file>file:/media/quantap/cd077038-99e4-4618-b3ac-4126f73bcdba/quantap/Documents/groupProject/communityPlatform/communityPlatform-0.0.1/src/java/databaseHandlers/DataBasePublicationQueries.java</file>
+            <file>file:/media/quantap/cd077038-99e4-4618-b3ac-4126f73bcdba/quantap/Documents/groupProject/communityPlatform/communityPlatform-0.0.1/web/chat_room.jsp</file>
             <file>file:/media/quantap/cd077038-99e4-4618-b3ac-4126f73bcdba/quantap/Documents/groupProject/communityPlatform/communityPlatform-0.0.1/src/java/servlets/AuthenticateUser.java</file>
+            <file>file:/media/quantap/cd077038-99e4-4618-b3ac-4126f73bcdba/quantap/Documents/groupProject/communityPlatform/communityPlatform-0.0.1/web/Resources.jsp</file>
             <file>file:/media/quantap/cd077038-99e4-4618-b3ac-4126f73bcdba/quantap/Documents/groupProject/communityPlatform/communityPlatform-0.0.1/web/publisher.jsp</file>
-            <file>file:/media/quantap/cd077038-99e4-4618-b3ac-4126f73bcdba/quantap/Documents/groupProject/communityPlatform/communityPlatform-0.0.1/src/java/servlets/SendMessageServlet.java</file>
+            <file>file:/media/quantap/cd077038-99e4-4618-b3ac-4126f73bcdba/quantap/Documents/groupProject/communityPlatform/communityPlatform-0.0.1/web/styles.css</file>
+            <file>file:/media/quantap/cd077038-99e4-4618-b3ac-4126f73bcdba/quantap/Documents/groupProject/communityPlatform/communityPlatform-0.0.1/web/publication_page.jsp</file>
+            <file>file:/media/quantap/cd077038-99e4-4618-b3ac-4126f73bcdba/quantap/Documents/groupProject/communityPlatform/communityPlatform-0.0.1/src/java/servlets/UserDisplayServlet.java</file>
         </group>
     </open-files>
 </project-private>
