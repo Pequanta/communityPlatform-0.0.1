@@ -42,16 +42,14 @@ public class DisplayPublicationServlet extends HttpServlet {
         try{
             PrintWriter out = response.getWriter();
             
-            RequestDispatcher dispatcher = request.getRequestDispatcher("publicationContPage.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("publication_page.jsp");
             CreateConnection instCon = new CreateConnection();
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
             
             DataBasePublicationQueries inst = new DataBasePublicationQueries(cont);
             int pub_id = Integer.parseInt(request.getParameter("pubId"));
-            System.out.println("pub_id : " + pub_id);
             Publication pubContent = inst.publicationInfo(pub_id);
-            System.out.println(pubContent.getPublicationText());
             request.setAttribute("content", pubContent.getPublicationText());
             
             ArrayList<String> allPublication = inst.allPublications();

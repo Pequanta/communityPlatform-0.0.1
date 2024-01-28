@@ -7,21 +7,103 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : quantap
 */
 
-
 body{
-    margin-top: 5%;
-    background-color: white;
-    background-image: url('bg.png');
+    background: url('logo.png') no-repeat;
+    background-size: cover;
     color: white;
+    
 }
 
-.signin_page{
-    display:flex;
-    justify-content: center;
+li, a, button{
+    font-weight: 500;
+    font-size: 40px;
+    color: #ccffcc;
+    text-decoration: none;
+}
+header{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 30px 10%;
+}
+
+.logo{
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    margin-right: auto;
+    border: none;
+    border-radius: 50px;
+}
+
+.nav_bar{
+    list-style: none;
+}
+.nav_bar li{
+    display: inline-block;
+    padding: 0px 20px;
+}
+.nav_bar li a{
+    transition: all 0.3s ease 0s;
+}
+
+.nav_bar li a:hover{
+    color: #80c1ff;
+}
+button{
+    padding: 9px 25px;
+    background-color: rgba(0, 130, 160, 0.7);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    
+}
+
+button:hover{
+    padding: 9px 25px;
+    background-color: rgba(0, 130, 160, 0.7);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    
 }
 
 .sign_page{
-    font-family: 'Dancing Script', cursive;
+    padding: 200px 100px;
+    font-size: 30px;
+    font-weight: 500px;
+}
+
+.wrapper{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    width: 40%;
+    height: 800px;
+    background-color: rgba(0, 1, 10, 0.8);
+    font-size: 20px;
+    font-weight: 500; 
+    border-radius: 30px;   
+}
+
+.wrapper input{
+    width: 700px;
+    height: 50px;
+    position: relative;
+    font-size: 40px;
+    font-weight: 600;
+    margin: 10px;
+    border-radius: 10px;
+}
+.wrapper button{
+    width: 40%;
+}
+.wrapper note_labels{
+    font-size: 20px;
+    font-weight: 100;
 }
 .users_box{
     width: 30%;
@@ -34,102 +116,118 @@ body{
     border-radius: 10%;
     overflow: auto;
 }
+
+.wrapper_pub{
+    width: 40%;
+    height: 800px;
+    background-color: rgba(0, 1, 10, 0.8);
+    font-size: 20px;
+    font-weight: 500; 
+    border-radius: 30px; 
+    margin-top: 10%;
+}
 .chat_box{
     width: 70%;
-    background-color: gray;
+    height: 1200px;
+    background: transparent;
     float: left;
-    border-radius: 5%; 
-}
-.chat_display{
-    background-color: black;
-    width: 80%;
-    height:700px;
-    font-size: 100px;
-    font-weight: 400;
-    border-radius: 20%;
-    overflow: auto;
+    border-radius: 10px;
 }
 .message_box{
     width: 50%;
-    height: 50px;
+    height: 100px;
     bottom: 0;
     margin-bottom: 20px;
-    border-radius: 20%;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400; /* Normal */
     font-size: 50;
+    border-radius: 10px;
 }
 .send_message{
-    bottom: 0;
     height: 50px;
-    margin-bottom: 37px;
+    margin-bottom: 100px;
     width: 10%;
-    border-radius: 40%;
-}
-.header{
+    border-radius: 20px;
     font-size: 40px;
-    color: white;
-    text-decoration: none;
-    width: 40vw;
 }
-.header:hover{
-    color: yellow;
-    text-decoration: black;
-    
-}
+
 .sent_m{
     width: 70%;
-    height: 800px;
-    background-color: gray;
-    border-radius: 10%;
+    height: 1000px;
+    background-color: #97a7af;
     overflow: auto;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400; /* Normal */
     font-size: 50px;  
+    border-radius: 10px;
+    
+}
+.users_box{
+    height: 1200px;
+}
+.user_disp{
+    width: 90%;
+    height: 1200px;
+    background-color:white;
+    border-radius: 10%;
     
 }
 
-.user_disp{
-    width: 90%;
-    height: 80px;
-    background-color:white;
-    border-radius: 10%;
+#user_name{
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+.user_info{
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    margin-right: auto;
+    border: none;
+    border-radius: 50px;
+    float: right;
 }
 
+
 .messageDiv{
+    display: inline-block;
     background-color: black; 
     border: 5px;
     border-radius: 20px;
-    opacity: 0.2;
+    margin: 20px;
+    width: 80%;
+    text-align: start;
+    float: right;
 }
 .userDiv{
     background-color: gray;
     border: 5px;
     border-radius: 20px;
-    
     font-family: 'Open Sans', sans-serif;
     font-weight: 400; /* Normal */
     font-size: 50px; 
+    margin: 20px 20px;
+    
 }
 .publicationPage{
     background-color: black;
     color: white;
-    height: 800px;
-    width: 60%;
+    height: 1200px;
+    width: 70%;
     float: right;
 }
 
 .publicationEach{
+    background-color: #0f212a;
     width: 70%; 
     height: 700px;
 }
 
 .allPublications{
-        background-color: black;
-        height: 800px;
-        width: 40%;
-        float: left;
-        overflow: auto;
+    background-color: #0f212a;
+    height: 1200px;
+    width: 30%;
+    float: left;
+    overflow: auto;
 }
 
 .resourcePage{
@@ -144,7 +242,7 @@ body{
 
 #dispPub{
     color: white;
-    background-color: black;
+    background-color:#0f212a;;
     width: 80%;
     font-size: 15px;
     height: 200px;

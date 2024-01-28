@@ -36,10 +36,8 @@ public class DataBasePublicationQueries {
             resultCont = statementInst.executeQuery(getId);
             
             if(resultCont.next()) userId = resultCont.getInt("user_id");
-            System.out.println(userId);
             String values =  publication.getPublicationTime()  + "', '" +publication.getPublicationText() + "', '" + publication.getPublicationTitle() + "' , ";
             String addPublicationStatement ="INSERT INTO publication_table VALUES (0, '" + values+ userId + ")";
-            System.out.println(addPublicationStatement);
            rows = statementInst.executeUpdate(addPublicationStatement);
         }catch(Exception e){
             e.printStackTrace();

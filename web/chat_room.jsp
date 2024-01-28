@@ -26,43 +26,45 @@
         
         <center>
               <header class="header">
+                  <img class="logo" src="logo.jpg" alt="logo"> 
                   <nav>
-                      <%
-                          String[] links = {"publication_page.jsp" , "chat_room.jsp", "Resources.jsp"};
-                          String[] pageNames = {"Publication", "Discussion", "Resources"};
-                          for(int j = 0; j < links.length;j++){
-                      %>
-                      <a href=<%=links[j]%>><%=pageNames[j] %></a>
-                      <%
-                          }
-                      %>
+                      <ul class="nav_bar">
+                        <%
+                            String[] links = {"publication_page.jsp" , "chat_room.jsp", "Resources.jsp"};
+                            String[] pageNames = {"Publication", "Discussion", "Resources"};
+                            for(int j = 0; j < links.length;j++){
+                        %>
+                        <li><a href=<%=links[j]%>><%=pageNames[j] %></a><li>
+                        <%
+                            }
+                        %>
+                    </ul>
                   </nav>
+                  <form action="LogOutServlet">
+                    <button>Log out</button></a>
+                  </form>
               </header>
-
-              <h1>Chat Room</h1>
               <div class="chat_box">
-                  <div class="chat_display">
                       <div class="sent_m">
                           <%
                               ArrayList<String> updatedData = (ArrayList) request.getAttribute("sentMessage");
                               if(updatedData != null){
                                   for(int i = 0; i < updatedData.size();i++){
                                       %>
-                                      <div class="messageDiv"><%=updatedData.get(i).split(",")[0]%> : <%=updatedData.get(i).split(",")[1]%></div></br>
+                                      <div><div class="messageDiv"><h6 id="user_name"><%=updatedData.get(i).split(",")[0]%> </h6><%=updatedData.get(i).split(",")[1]%></div><div><img src="user.png" class="user_info" alt="user_img"/><!----></div></div></br>
                                       <%
                                       }
                               }
 
                           %>  
                       </div>
-                  </div>
                   <form action="SendMessageServlet">
-                      <input type="text" name="message" class="message_box"/>
+                      <input style="font-size: 40px" type="text" name="message" class="message_box"/>
                       <input type="submit" name="send"  value="send" class="send_message"/>
                   </form>
               </div>
               <div class="users_box">
-                  <label>Users</label>
+                  <label>Members</label>
                   <%
                               ArrayList<String> allUsers = (ArrayList) request.getAttribute("users");
                               if(allUsers != null){

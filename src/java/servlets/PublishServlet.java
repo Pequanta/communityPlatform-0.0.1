@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.Date;
 
 /**
  *
@@ -39,7 +40,7 @@ public class PublishServlet extends HttpServlet {
         try{
             PrintWriter out = response.getWriter();
             
-            RequestDispatcher dispatcher = request.getRequestDispatcher("publisher.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("publication_page.jsp");
             CreateConnection instCon = new CreateConnection();
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
@@ -48,9 +49,7 @@ public class PublishServlet extends HttpServlet {
             String pubText = request.getParameter("pubText");
             String pubTitle = request.getParameter("pubTitle");
             UserInfo senderInfo = (UserInfo) request.getSession().getAttribute("person");
-            System.out.println("check: " + pubText);
-            System.out.println("check: " + pubTitle);
-            inst.addPublication(new Publication(pubText, "11:30", pubTitle), senderInfo.getEmail());
+            inst.addPublication(new Publication(pubText, (new Date()).toString(), pubTitle), senderInfo.getEmail());
             cont.close();
             dispatcher.forward(request, response);
         }catch(Exception e){

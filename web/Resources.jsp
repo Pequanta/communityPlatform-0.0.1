@@ -1,4 +1,4 @@
-w<%-- 
+<%-- 
     Document   : Resources
     Created on : Dec 24, 2023, 8:26:52 AM
     Author     : quantap
@@ -14,19 +14,25 @@ w<%--
     </head>
     <body class="resource_body">
         <center>
-            <header class="header">
-                <nav>
-                    <%
-                        String[] links = {"publication_page.jsp" , "chat_room.jsp", "Resources.jsp"};
-                        String[] pageNames = {"Publication", "Discussion", "Resources"};
-                        for(int j = 0; j < links.length;j++){
-                    %>
-                    <a href=<%=links[j]%>><%=pageNames[j] %></a>
-                    <%
-                        }
-                    %>
-                </nav>
-            </header>
+            <header>
+                  <img class="logo" src="logo.jpg" alt="logo"> 
+                  <nav>
+                      <ul class="nav_bar">
+                        <%
+                            String[] links = {"publication_page.jsp" , "chat_room.jsp", "Resources.jsp"};
+                            String[] pageNames = {"Publication", "Discussion", "Resources"};
+                            for(int j = 0; j < links.length;j++){
+                        %>
+                        <li><a href=<%=links[j]%>><%=pageNames[j] %></a><li>
+                        <%
+                            }
+                        %>
+                    </ul>
+                  </nav>
+                  <form action="LogOutServlet">
+                    <button>Log out</button></a>
+                  </form>
+              </header>
                 <div class="resourcePage">
                     <div class="universityWebsites">
                         <ul id="sites">
