@@ -42,14 +42,10 @@
                             %>
                                         <tr>
                                             <td><label style="font-size: 40px; margin-left: 10px"><%=formEntries[a] %></label></td>
-                                            <td><select style="margin-left: -400px; width: 100px; height: 40px; border-radius: 10px; font-size: 30px" name=<%=formNames[a]%> />
-                                                <optgroup label="Student">
-                                                  <option value=0>0</option>
-                                                </optgroup>
-                                                <optgroup label="Professional">
-                                                  <option value=1>1</option>
-                                                </optgroup>
-                                                </select></td>
+                                            <td><select style="margin-left: -300px; width: 200px; height: 40px; border-radius: 10px; font-size: 30px" name=<%=formNames[a]%> />
+                                                <option value=0>Student</option>
+                                                <option value=1>Professional</option>
+                                            </select></td>
  
                                         </tr>
                             <%
@@ -66,7 +62,14 @@
                              %>
                              <tr><td><button type="submit" name="signup" value="signup">Sign up</button></td></tr>
                         </table>
-                             <h1 class="note_labels">Already have an account? <a href="signin.jsp">Sign in</a></h1>
+                        <div class="error_message">
+                            <% String errorMessage = (String) request.getAttribute("error_message");%>
+                            <% if(errorMessage!= null) {%> 
+                                                    <h1><%=errorMessage%></h1>
+                            <% } %>
+
+                        </div> 
+                        <h1 class="note_labels">Already have an account? <a href="signin.jsp">Sign in</a></h1>
                     </form>
 
             </div>

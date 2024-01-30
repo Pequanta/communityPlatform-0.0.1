@@ -26,12 +26,12 @@
         
         <center>
               <header class="header">
-                  <img class="logo" src="logo.jpg" alt="logo"> 
+                  <div class="logo"><img src="assets/logo.jpg" alt="logo"><h3>AAiT SECE community</h3></div>
                   <nav>
                       <ul class="nav_bar">
                         <%
-                            String[] links = {"publication_page.jsp" , "chat_room.jsp", "Resources.jsp"};
-                            String[] pageNames = {"Publication", "Discussion", "Resources"};
+                            String[] links = {"home.jsp", "publicationContPage.jsp" , "chat_room.jsp", "Resources.jsp"};
+                            String[] pageNames = {"Home", "Publication", "Discussion", "Resources"};
                             for(int j = 0; j < links.length;j++){
                         %>
                         <li><a href=<%=links[j]%>><%=pageNames[j] %></a><li>
@@ -51,7 +51,7 @@
                               if(updatedData != null){
                                   for(int i = 0; i < updatedData.size();i++){
                                       %>
-                                      <div><div class="messageDiv"><h6 id="user_name"><%=updatedData.get(i).split(",")[0]%> </h6><%=updatedData.get(i).split(",")[1]%></div><div><img src="user.png" class="user_info" alt="user_img"/><!----></div></div></br>
+                                      <div><div class="messageDiv"><h6 id="user_name"><%=updatedData.get(i).split(",")[0]%> </h6><%=updatedData.get(i).split(",")[1]%></div><div><img src="assets/user.png" class="user_info" alt="user_img"/><!----></div></div></br>
                                       <%
                                       }
                               }

@@ -4,26 +4,18 @@
  */
 package servlets;
 
-import dataContainers.Publication;
-import dataContainers.UserInfo;
-import databaseHandlers.CreateConnection;
-import databaseHandlers.DataBasePublicationQueries;
-import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.util.Date;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author quantap
  */
-public class PublishServlet extends HttpServlet {
+public class VerifyRegistration extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,31 +29,17 @@ public class PublishServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try{
-            
-            
-            RequestDispatcher dispatcher = request.getRequestDispatcher("publicationContPage.jsp");
-            CreateConnection instCon = new CreateConnection();
-            
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
-            
-            DataBasePublicationQueries inst = new DataBasePublicationQueries(cont);
-            String pubText = request.getParameter("pubText");
-            String pubTitle = request.getParameter("pubTitle");
-            
-            UserInfo senderInfo = (UserInfo) request.getSession().getAttribute("person");
-            out.println("<h1>Before database</h1>");
-            out.println("<h1>" + senderInfo.getEmail() + "</h1>");
-            
-            inst.addPublication(new Publication(pubText, (new Date()).toString(), pubTitle), senderInfo.getEmail());
-            
-            cont.close();
-            dispatcher.forward(request, response);
-        }catch(Exception e){
-            out.println("<h1>Tried but failed</h1>");
-            e.printStackTrace();
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet VerifyRegistration</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet VerifyRegistration at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

@@ -7,6 +7,7 @@ import databaseHandlers.DataBaseInformationQueries;
 import dataContainers.UserInfo;
 import databaseHandlers.CreateConnection;
 import importantUtils.UserInputValidate;
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -37,31 +38,37 @@ public class AuthenticateUser extends HttpServlet {
             PrintWriter out = response.getWriter();
             String userEmail = request.getParameter("email"),
                     userPassword = request.getParameter("password");
+            
             try{
                 
                 CreateConnection instCon = new CreateConnection();
                 Class.forName("com.mysql.cj.jdbc.Driver");
-                out.println("<h1> Hello world</h1>");
                 Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
-                
                 DataBaseInformationQueries inst = new DataBaseInformationQueries(cont);
                 UserInfo userData = inst.getUserInfoByEmail(userEmail);
-                if(UserInputValidate.validEmail(userData.getEmail()) && userData.getPassword().equals(userPassword)){
+                RequestDispatcher dispatcher = request.getRequestDispatcher("signin.jsp");
+                
+                if(userEmail.equals("")){
+                    request.setAttribute("error_message", "Please Insert credentials! Try again");
+                    dispatcher.forward(request, response);
+                }
+                else if(UserInputValidate.validEmail(userData.getEmail()) && userData.getPassword().equals(userPassword)){
                     HttpSession session = request.getSession(true);
                     session.setAttribute("person" , userData);
-                    response.sendRedirect("publication_page.jsp");
+                    response.sendRedirect("publicationContPage.jsp");
+                }else if(!userData.getPassword().equals(userPassword)){
+                    request.setAttribute("error_message", "Invalid Password! Try again");
+                    dispatcher.forward(request, response);
                 }else{
-                    out.println("<h1>InvalidCredentials</h1>");
-                    out.println("<h1>" + userEmail + "</h1>");
-                     out.println("<h1>" + userPassword + "</h1>");
-                    out.println("<a href=\"signin.jsp\"><h1>TryAgain!</h1></a>");
+                    request.setAttribute("error_message","Email doesn't exist");
+                    dispatcher.forward(request, response);
                 }
                 cont.close();
                 
                 
                 
             }catch(Exception e){
-                //out.println("<h1>Connection Error</h1>");
+                out.println("<h1>Connection Error</h1>");
                 e.printStackTrace();
             }
             

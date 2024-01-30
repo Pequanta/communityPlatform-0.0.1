@@ -119,7 +119,7 @@ public class DataBasePublicationQueries {
 //            CreateConnection conInfo = new CreateConnection();
 //            Connection con = DriverManager.getConnection(conInfo.getUrl() + conInfo.getDatabase() , conInfo.getUser(), conInfo.getPassword());
 //            DataBasePublicationQueries inst = new DataBasePublicationQueries(con);
-//            System.out.println(inst.addPublication(new Publication("What is going on here!", "11:30", "nothing"), "penielyohannes6@gmail.com"));
+//            //System.out.println(inst.addPublication(new Publication("What is going on here!", "11:30", "nothing"), "penielyohannes6@gmail.com"));
 //            ArrayList cont = inst.allPublications();
 //            for(int i = 0;i < cont.size();i++){
 //                System.out.println(cont.get(i));

@@ -13,18 +13,16 @@
         <title>Publication</title>
         <link rel="stylesheet" type="text/css" href="styles.css" />
     </head>
-    <body>
-        <form action="PublicationPageServlet">
-                    <button><a href="publicationContPage.jsp">Publications</a></button>
-        </form>
+    <body>  
+        <jsp:include page="PublicationPageServlet" />
         <center>
-            <header>
-                  <img class="logo" src="logo.jpg" alt="logo"> 
+            <header class="header">
+                  <div class="logo"><img src="assets/logo.jpg" alt="logo"><h3>AAiT SECE community</h3></div>
                   <nav>
                       <ul class="nav_bar">
                         <%
-                            String[] links = {"publication_page.jsp" , "chat_room.jsp", "Resources.jsp"};
-                            String[] pageNames = {"Publication", "Discussion", "Resources"};
+                            String[] links = {"home.jsp", "publicationContPage.jsp" , "chat_room.jsp", "Resources.jsp"};
+                            String[] pageNames = {"Home", "Publication", "Discussion", "Resources"};
                             for(int j = 0; j < links.length;j++){
                         %>
                         <li><a href=<%=links[j]%>><%=pageNames[j] %></a><li>
@@ -63,6 +61,14 @@
                             <%
                             }
                     }
+                    else{
+                        %>
+                        <script>
+                            alert("found nothing")
+                        </script>
+                        <%
+                    }
+                    
                 %> 
             </div>
         </form>

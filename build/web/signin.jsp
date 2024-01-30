@@ -33,7 +33,13 @@
                              <tr><td><button type="submit" name="signin" value="signin">Sign in</button></td></tr>
                              
                         </table>
-                                <h1 class ="error_message"></h1>
+                        <div class="error_message">
+                            <% String errorMessage = (String) request.getAttribute("error_message");%>
+                            <% if(errorMessage!= null) {%> 
+                                                    <h1><%=errorMessage%></h1>
+                            <% } %>
+
+                        </div> 
                         <h1 class="note_labels">Don't have an account? <a href="signup.jsp">Sign up</a></h1>
                     </form>
 

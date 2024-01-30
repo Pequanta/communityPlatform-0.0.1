@@ -1,0 +1,40 @@
+-- create database tutorial_db;
+-- USE tutorial_db;
+-- 
+-- 
+-- CREATE TABLE community_user(
+-- 	user_id INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+--     user_f_name VARCHAR(50) NOT NULL,
+--     user_l_name VARCHAR(50) NOT NULL,
+--     user_email VARCHAR(50) UNIQUE	,
+--     user_institute VARCHAR(50),
+--     user_education_level INT NOT NULL,
+--     user_password VARCHAR(20) NOT NULL
+-- );
+-- 
+-- CREATE TABLE message_table(
+-- 	message_id INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+--  	message_time VARCHAR(50),
+--     message_content VARCHAR(500),
+--     user_id INT,
+--     FOREIGN KEY	 (user_id) REFERENCES community_user(user_id)
+-- );
+-- 
+-- CREATE TABLE publication_table(
+-- 	publication_id INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+-- 	publication_time VARCHAR(50),
+--     publication_content VARCHAR(5000),
+--     publication_title VARCHAR(100 ) UNIQUE,
+--     user_id INT,
+--     FOREIGN KEY (user_id) REFERENCES community_user(user_id)
+-- );
+-- CREATE TABLE resources(
+-- 	resource_id INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+--     resource_title VARCHAR(100),
+-- 	resource_link VARCHAR(100)
+-- );
+-- 
+-- select * from message_table;
+-- select * from community_user;
+-- select * from publication_table;
+-- 

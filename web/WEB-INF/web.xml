@@ -36,6 +36,10 @@
         <servlet-name>LogOutServlet</servlet-name>
         <servlet-class>servlets.LogOutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VerifyRegistration</servlet-name>
+        <servlet-class>servlets.VerifyRegistration</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterUser</servlet-name>
         <url-pattern>/RegisterUser</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>LogOutServlet</servlet-name>
         <url-pattern>/LogOutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerifyRegistration</servlet-name>
+        <url-pattern>/VerifyRegistration</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>home.jsp</welcome-file>
