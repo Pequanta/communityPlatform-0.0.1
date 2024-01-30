@@ -4,12 +4,18 @@
  */
 package servlets;
 
+import dataContainers.UserInfo;
+import databaseHandlers.CreateConnection;
+import java.sql.Connection;
+import databaseHandlers.DataBaseInformationQueries;
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.sql.DriverManager;
 
 /**
  *
@@ -28,19 +34,38 @@ public class VerifyRegistration extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet VerifyRegistration</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet VerifyRegistration at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+            RequestDispatcher dispatcher = request.getRequestDispatcher("verficationPage.jsp");
+            String userCode = (String) request.getParameter("ver_code");
+            PrintWriter out = response.getWriter();
+            String verCode = (String) request.getSession().getAttribute("verificationCode");
+            try{
+                if(userCode.equals(verCode)){
+                    CreateConnection instCon = new CreateConnection();
+                    Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
+                    Class.forName("com.mysql.cj.jdbc.Driver");
+                    UserInfo userData = (UserInfo) request.getSession().getAttribute("person");
+                    DataBaseInformationQueries inst = new DataBaseInformationQueries(cont);
+                    
+                    boolean doneRegister = inst.addUser(userData);
+                    if(doneRegister){
+                        request.getSession().invalidate();
+                        response.sendRedirect("signin.jsp");
+                    }
+                    else{
+                        request.setAttribute("error_message", "Couldn't done the registration");   
+                        dispatcher.forward(request, response);
+                    }
+                }else{
+                    request.setAttribute("error_message", "Invalid Code! try Again");   
+                    dispatcher.forward(request, response);
+                } 
+            }catch(Exception e){
+                out.println("<h1>" + e.getMessage() + "</h1>");
+                e.printStackTrace();
+            }
+            
+            
+            
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

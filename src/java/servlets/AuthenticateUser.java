@@ -54,8 +54,9 @@ public class AuthenticateUser extends HttpServlet {
                 }
                 else if(UserInputValidate.validEmail(userData.getEmail()) && userData.getPassword().equals(userPassword)){
                     HttpSession session = request.getSession(true);
+                    session.setAttribute("connection", cont);
                     session.setAttribute("person" , userData);
-                    response.sendRedirect("publicationContPage.jsp");
+                    response.sendRedirect("home.jsp");
                 }else if(!userData.getPassword().equals(userPassword)){
                     request.setAttribute("error_message", "Invalid Password! Try again");
                     dispatcher.forward(request, response);
