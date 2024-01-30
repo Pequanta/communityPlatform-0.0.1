@@ -46,9 +46,7 @@ public class RegisterUser extends HttpServlet {
             try{
                 if(userFullName.length < 2){
                     request.setAttribute("error_message", "Pleast Insert FullName");
-                    request.setAttribute("institute", userInstitute);
-                    request.setAttribute("email",userEmail);
-                    request.setAttribute("password", userPassword);
+                    dispatcher.forward(request, response);
                     
                 }
                 UserInfo userData = new UserInfo(userFullName[0], userFullName[1],userInstitute, userEmail, userPassword, userRole);
@@ -66,10 +64,17 @@ public class RegisterUser extends HttpServlet {
                     //The question that "Who is authorized to have professional account ?" is not answered with this logic.
                     if(UserInputValidate.validEmail(userEmail) && UserInputValidate.validName(userName) && !inst.checkUserExist(userData)){
                         inst.addUser(userData);
-                        out.println("<h1>Successfully signed up</h1>");
-                        out.println("<a href=\"signin.jsp\"><h1>Signin</h1></a>");
-                    }else if(!UserInputValidate.validEmail(userEmail) || (inst.getUserInfoByEmail(userEmail) != null)){
+                        response.sendRedirect("verificationPage.jsp");
+                    }else if(inst.getUserInfoByEmail(userEmail) != null){
+                        
                         request.setAttribute("error_message", "Email already exists. Signin or use Other Email");
+                        dispatcher.forward(request, response);
+                    }else if(!UserInputValidate.validEmail(userEmail)){
+                        request.setAttribute("error_message", "Pleast Insert FullName");
+                        request.setAttribute("institute", userInstitute);
+                        request.setAttribute("email",userEmail);
+                        request.setAttribute("password", userPassword);
+                        request.setAttribute("error_message", "Invalid Email. Please try again");
                         dispatcher.forward(request, response);
                     }else{
                         request.setAttribute("error_message", "Invalid Credentials");
