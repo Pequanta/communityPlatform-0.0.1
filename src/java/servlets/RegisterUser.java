@@ -7,6 +7,7 @@ import databaseHandlers.DataBaseInformationQueries;
 import dataContainers.UserInfo;
 import databaseHandlers.CreateConnection;
 import importantUtils.UserInputValidate;
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -34,14 +35,23 @@ public class RegisterUser extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
             PrintWriter out = response.getWriter();
+            RequestDispatcher dispatcher = request.getRequestDispatcher("signup.jsp");
             String userName = request.getParameter("uname"), 
                     userInstitute = request.getParameter("institute"),
                     userEmail = request.getParameter("email"),
                     userEducationLevel = request.getParameter("education_level"),
                     userPassword = request.getParameter("password");
             String[] userFullName = userName.split(" ");
+            int userRole = userEducationLevel.equals("Student") ? 0 : 1; 
             try{
-                UserInfo userData = new UserInfo(userFullName[0], userFullName[1],userInstitute, userEmail, userPassword, Integer.parseInt(userEducationLevel));
+                if(userFullName.length < 2){
+                    request.setAttribute("error_message", "Pleast Insert FullName");
+                    request.setAttribute("institute", userInstitute);
+                    request.setAttribute("email",userEmail);
+                    request.setAttribute("password", userPassword);
+                    
+                }
+                UserInfo userData = new UserInfo(userFullName[0], userFullName[1],userInstitute, userEmail, userPassword, userRole);
                 CreateConnection instCon = new CreateConnection();
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 try (Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword())) {
@@ -58,24 +68,20 @@ public class RegisterUser extends HttpServlet {
                         inst.addUser(userData);
                         out.println("<h1>Successfully signed up</h1>");
                         out.println("<a href=\"signin.jsp\"><h1>Signin</h1></a>");
-                    }else if(!UserInputValidate.validName(userName)){
-                        out.println("<h1>Invalid Name</h1>");
-                        out.println("<a href=\"signup.jsp\"><h1>TryAgain!</h1></a>");
-                    }else if(!UserInputValidate.validEmail(userEmail)){
-                        out.println("<h1>Invalid Email</h1>");
-                        out.println("<a href=\"signup.jsp\"><h1>TryAgain!</h1></a>");
-                    }else if(inst.checkUserExist(userData)){
-                        out.println("<h1>User alread exists</h1>");
-                        out.println("<a href=\"signin.jsp\"><h1>Sign in</h1></a>");
+                    }else if(!UserInputValidate.validEmail(userEmail) || (inst.getUserInfoByEmail(userEmail) != null)){
+                        request.setAttribute("error_message", "Email already exists. Signin or use Other Email");
+                        dispatcher.forward(request, response);
                     }else{
-                        out.println("<h1>Invalid Credentials</h1>");
-                        out.println("<a href=\"signup.jsp\"><h1>TryAgain!</h1></a>");
+                        request.setAttribute("error_message", "Invalid Credentials");
+                        dispatcher.forward(request, response);
+                        
                     }
                 }
                 //User credentials are analysed with the following logic;
                 //First validation will be about input validation and the second will be about the users legitmacy for registration;
                 //This include whether the user has already been registered or whether the user is student or professional
             }catch(Exception e){
+                out.println("<h1>"+ e.getMessage() + "</h1>");
                 e.printStackTrace();
             }
             

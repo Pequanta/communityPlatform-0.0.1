@@ -37,22 +37,30 @@ public class PublishServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
         try{
-            PrintWriter out = response.getWriter();
             
-            RequestDispatcher dispatcher = request.getRequestDispatcher("publication_page.jsp");
+            
+            RequestDispatcher dispatcher = request.getRequestDispatcher("publicationContPage.jsp");
             CreateConnection instCon = new CreateConnection();
+            
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword());
             
             DataBasePublicationQueries inst = new DataBasePublicationQueries(cont);
             String pubText = request.getParameter("pubText");
             String pubTitle = request.getParameter("pubTitle");
+            
             UserInfo senderInfo = (UserInfo) request.getSession().getAttribute("person");
+            out.println("<h1>Before database</h1>");
+            out.println("<h1>" + senderInfo.getEmail() + "</h1>");
+            
             inst.addPublication(new Publication(pubText, (new Date()).toString(), pubTitle), senderInfo.getEmail());
+            
             cont.close();
             dispatcher.forward(request, response);
         }catch(Exception e){
+            out.println("<h1>Tried but failed</h1>");
             e.printStackTrace();
         }
     }

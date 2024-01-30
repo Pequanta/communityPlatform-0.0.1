@@ -33,12 +33,12 @@
         <servlet-class>servlets.MessageLoadServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ToCheck</servlet-name>
-        <servlet-class>servlets.ToCheck</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>LogOutServlet</servlet-name>
         <servlet-class>servlets.LogOutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VerifyRegistration</servlet-name>
+        <servlet-class>servlets.VerifyRegistration</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterUser</servlet-name>
@@ -73,12 +73,12 @@
         <url-pattern>/MessageLoadServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ToCheck</servlet-name>
-        <url-pattern>/ToCheck</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>LogOutServlet</servlet-name>
         <url-pattern>/LogOutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerifyRegistration</servlet-name>
+        <url-pattern>/VerifyRegistration</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>home.jsp</welcome-file>

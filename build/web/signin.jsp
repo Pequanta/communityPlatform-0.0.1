@@ -17,34 +17,29 @@
             <h1>Community Platform EEEE</h1>
             <div class="wrapper">
                     <%
-                        String[] formEntries = {"Email","password"};
                         String[] formNames = {"email","password"};
                     %>
                     <form action="AuthenticateUser">
                         
                         <table id="table">
-                            <% 
-                                for(int a = 0; a < formEntries.length;a++){
-                                    if(formEntries[a] == "password"){
-                            %>
-                                        <tr>
-                                            <td><input type="password" name=<%=formNames[a]%> placeholder="password" /></td> 
+                            <tr>
+                                <td><input type="text" name=<%=formNames[0]%> placeholder="Email"/></td> 
 
-                                        </tr>
-                            <%
-                                continue;
-                                }
-                            %>
-                                    <tr>
-                                        <td><input type="text" name=<%=formNames[a]%> placeholder="Email"/></td> 
+                            </tr>
+                            <tr>
+                                <td><input type="password" name=<%=formNames[1]%> placeholder="Password" /></td> 
 
-                                    </tr>
-                             <%
-                                 }
-                             %>
+                            </tr>
                              <tr><td><button type="submit" name="signin" value="signin">Sign in</button></td></tr>
                              
                         </table>
+                        <div class="error_message">
+                            <% String errorMessage = (String) request.getAttribute("error_message");%>
+                            <% if(errorMessage!= null) {%> 
+                                                    <h1><%=errorMessage%></h1>
+                            <% } %>
+
+                        </div> 
                         <h1 class="note_labels">Don't have an account? <a href="signup.jsp">Sign up</a></h1>
                     </form>
 

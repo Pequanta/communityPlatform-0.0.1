@@ -8,15 +8,74 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 */
 
 body{
-    background: url('logo.png') no-repeat;
+    background: url('assets/logo.png') no-repeat;
     background-size: cover;
     color: white;
-    
 }
 
-li, a, button{
+.home_page .wrapper_for_p{
+    displey: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    animation: pageLoadAnimation 3s;
+    float: right;   
+}
+
+
+
+.logo{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 20px;
+    margin-left: 20%;
+    border-radius: 30%;
+}
+.logo img{
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 30%;
+    float: left;
+    margin-top: 15px;
+}
+
+.home_page .pictureCont{
+    width: 600px;
+    height: 600px;
+    float: left;
+    radius: 25px;
+    margin-top: 30px;
+}
+.home_page .dispPictures{
+    width: 500px;
+    height: 500px;
+    transition: width 2s, height 2s;
+    radius: 25px;
+}
+.home_page .homePageParagraph{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #0f2f2e;
+    margin: 20px 20px;
+}
+.home_page .dispPictures:hover{
+    width: 600px;
+    height: 600px;
+}
+
+.wrapper_for_p{
+    display: inline-block;
+    background-color: rgba(4, 35, 10,0.7);
+    color:  #d2e3e3;
     font-weight: 500;
     font-size: 40px;
+}
+li, a, button{
+    font-weight: 500;
+    font-size: 25px;
     color: #ccffcc;
     text-decoration: none;
 }
@@ -27,14 +86,6 @@ header{
     padding: 30px 10%;
 }
 
-.logo{
-    cursor: pointer;
-    width: 60px;
-    height: 60px;
-    margin-right: auto;
-    border: none;
-    border-radius: 50px;
-}
 
 .nav_bar{
     list-style: none;
@@ -48,7 +99,10 @@ header{
 }
 
 .nav_bar li a:hover{
-    color: #80c1ff;
+    color: black;
+    background-color: #8eebe8;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 5px rgb(0, 200 ,6);
 }
 button{
     padding: 9px 25px;
@@ -71,9 +125,11 @@ button:hover{
 }
 
 .sign_page{
+    margin-top: -10%;
     padding: 200px 100px;
-    font-size: 30px;
-    font-weight: 500px;
+    font-size: 20px;
+    font-weight: 400;
+    animation: pageLoadAnimation 1.5s;
 }
 
 .wrapper{
@@ -81,10 +137,10 @@ button:hover{
     justify-content: center;
     justify-items: center;
     align-items: center;
-    width: 40%;
-    height: 800px;
+    width: 50%;
+    height: 600px;
     background-color: rgba(0, 1, 10, 0.8);
-    font-size: 20px;
+    font-size: 10px;
     font-weight: 500; 
     border-radius: 30px;   
 }
@@ -93,7 +149,7 @@ button:hover{
     width: 700px;
     height: 50px;
     position: relative;
-    font-size: 40px;
+    font-size: 25px;
     font-weight: 600;
     margin: 10px;
     border-radius: 10px;
@@ -111,7 +167,7 @@ button:hover{
     background-color: black;
     float: right;
     border-radius: 5%;
-    font-size: 100px;
+    font-size: 50px;
     font-weight: 400;
     border-radius: 10%;
     overflow: auto;
@@ -128,7 +184,7 @@ button:hover{
 }
 .chat_box{
     width: 70%;
-    height: 1200px;
+    height: 800px;
     background: transparent;
     float: left;
     border-radius: 10px;
@@ -140,7 +196,7 @@ button:hover{
     margin-bottom: 20px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400; /* Normal */
-    font-size: 50;
+    font-size: 25px;
     border-radius: 10px;
 }
 .send_message{
@@ -148,26 +204,26 @@ button:hover{
     margin-bottom: 100px;
     width: 10%;
     border-radius: 20px;
-    font-size: 40px;
+    font-size: 30px;
 }
 
 .sent_m{
     width: 70%;
-    height: 1000px;
+    height: 600px;
     background-color: #97a7af;
     overflow: auto;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400; /* Normal */
-    font-size: 50px;  
+    font-size: 25px;  
     border-radius: 10px;
     
 }
 .users_box{
-    height: 1200px;
+    height: 800px;
 }
 .user_disp{
     width: 90%;
-    height: 1200px;
+    height: 800px;
     background-color:white;
     border-radius: 10%;
     
@@ -179,9 +235,10 @@ button:hover{
 }
 .user_info{
     cursor: pointer;
-    width: 100px;
-    height: 100px;
+    width: 40px;
+    height: 40px;
     margin-right: auto;
+    margin-top: 5%;
     border: none;
     border-radius: 50px;
     float: right;
@@ -193,7 +250,8 @@ button:hover{
     background-color: black; 
     border: 5px;
     border-radius: 20px;
-    margin: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
     width: 80%;
     text-align: start;
     float: right;
@@ -204,27 +262,27 @@ button:hover{
     border-radius: 20px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400; /* Normal */
-    font-size: 50px; 
+    font-size: 25px; 
     margin: 20px 20px;
     
 }
 .publicationPage{
-    background-color: black;
+    background-color:rgba(0,0,0,0.4);
     color: white;
-    height: 1200px;
+    height: 800px;
     width: 70%;
     float: right;
 }
 
 .publicationEach{
-    background-color: #0f212a;
+    background-color:rgba(0,0,0,0.4);
     width: 70%; 
     height: 700px;
 }
 
 .allPublications{
     background-color: #0f212a;
-    height: 1200px;
+    height: 800px;
     width: 30%;
     float: left;
     overflow: auto;
@@ -234,6 +292,7 @@ button:hover{
     width: 90%;
     height: 800px;
     background-color: black;
+    animation: pageLoadAnimation 1.5s;
 }
 
 .titles{
@@ -275,4 +334,21 @@ button:hover{
 .pubPageLinks:hover{
     color: black;
     background-color: #ffffcc;
+}
+
+.error_message{
+    font-size: 10px;
+    color: red;
+}
+
+
+@keyframes pageLoadAnimation{
+    from{
+        opacity: 0;
+        transition: rotateX(100px);
+    }
+    to{
+        opacity: 1;
+        transtion: rotateX(0px);
+    }
 }

@@ -131,7 +131,7 @@ public class DataBaseDiscussionQueries {
         }
         return rows > 0;
     }
-
+//
 //    public static void main(String[] args){
 //        try{
 //            CreateConnection createInst = new CreateConnection();
@@ -144,6 +144,8 @@ public class DataBaseDiscussionQueries {
 ////            inst.addChat(new ChatInfo("hallo" , "11:32"), "PenielYohannes@gmail.com");
 ////            inst.addChat(new ChatInfo("hi there" , "11:30"), "PenielYohannes6@gmail.com");
 ////            inst.addChat(new ChatInfo("see ya" , "11:34"), "PenielYohannes0@gmail.com");
+//            inst.allMessages();
+//            inst.clearChat();
 //            inst.allMessages();
 ////            System.out.println(inst.clearChat());
 ////            System.out.println(inst.allMessages());
