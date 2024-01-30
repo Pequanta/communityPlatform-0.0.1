@@ -132,10 +132,10 @@ public class DataBaseInformationQueries {
 //            Connection con = DriverManager.getConnection(cInst.getUrl() + cInst.getDatabase(), cInst.getUser(), cInst.getPassword());
 //            DataBaseInformationQueries inst = new DataBaseInformationQueries(con);
 //            //String fname, lname, institute, email, password;
-//            System.out.println(inst.addUser(new UserInfo("peniel", "yohannes","aait", "penielyohannes6@gmail.com", "asdf", 0)));
-//            System.out.println(inst.addUser(new UserInfo("another", "user","aait", "penielyohannes@gmail.com", "asdf", 0)));
-//            System.out.println(inst.addUser(new UserInfo("another", "admin","aait", "penielyohannes0@gmail.com", "asdf", 0)));
-//            System.out.println(inst.allUsers());
+////            System.out.println(inst.addUser(new UserInfo("peniel", "yohannes","aait", "penielyohannes6@gmail.com", "asdf", 0)));
+////            System.out.println(inst.addUser(new UserInfo("another", "user","aait", "penielyohannes@gmail.com", "asdf", 0)));
+////            System.out.println(inst.addUser(new UserInfo("another", "admin","aait", "penielyohannes0@gmail.com", "asdf", 0)));
+////            System.out.println(inst.allUsers());
 //        }catch(Exception e){
 //            e.printStackTrace();
 //        }

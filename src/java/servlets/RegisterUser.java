@@ -7,6 +7,7 @@ import databaseHandlers.DataBaseInformationQueries;
 import dataContainers.UserInfo;
 import databaseHandlers.CreateConnection;
 import importantUtils.UserInputValidate;
+import importantUtils.VerifyEmail;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +15,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.DriverManager;
 //import org.apache.commons.dbcp2.BasicDataSource;
@@ -52,6 +54,7 @@ public class RegisterUser extends HttpServlet {
                 UserInfo userData = new UserInfo(userFullName[0], userFullName[1],userInstitute, userEmail, userPassword, userRole);
                 CreateConnection instCon = new CreateConnection();
                 Class.forName("com.mysql.cj.jdbc.Driver");
+                
                 try (Connection cont = DriverManager.getConnection(instCon.getUrl() + instCon.getDatabase(), instCon.getUser(), instCon.getPassword())) {
                     DataBaseInformationQueries inst = new DataBaseInformationQueries(cont);
                     
@@ -63,7 +66,12 @@ public class RegisterUser extends HttpServlet {
                     //One problem seems to be hard to reach though
                     //The question that "Who is authorized to have professional account ?" is not answered with this logic.
                     if(UserInputValidate.validEmail(userEmail) && UserInputValidate.validName(userName) && !inst.checkUserExist(userData)){
-                        inst.addUser(userData);
+                        HttpSession session = request.getSession(true);
+                        session.setAttribute("person" , userData);
+                        VerifyEmail verInst = new VerifyEmail(userData.getEmail());
+                        String verCode = verInst.sendVerificationEmail();
+                        session.setAttribute("verificationCode", verCode);
+                        session.setAttribute("person", userData);
                         response.sendRedirect("verificationPage.jsp");
                     }else if(inst.getUserInfoByEmail(userEmail) != null){
                         

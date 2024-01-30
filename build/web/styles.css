@@ -14,7 +14,6 @@ body{
 }
 
 .home_page .wrapper_for_p{
-    displey: flex;
     justify-content: space-between;
     align-content: center;
     align-items: center;
@@ -46,18 +45,19 @@ body{
     width: 600px;
     height: 600px;
     float: left;
-    radius: 25px;
+    border-radius: 25px;
     margin-top: 30px;
 }
 .home_page .dispPictures{
     width: 500px;
     height: 500px;
     transition: width 2s, height 2s;
-    radius: 25px;
+    border-radius: 25px;
 }
 .home_page .homePageParagraph{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
     background-color: #0f2f2e;
     margin: 20px 20px;
 }
