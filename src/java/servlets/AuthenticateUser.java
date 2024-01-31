@@ -48,11 +48,13 @@ public class AuthenticateUser extends HttpServlet {
                 UserInfo userData = inst.getUserInfoByEmail(userEmail);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("signin.jsp");
                 
-                if(userEmail.equals("")){
+                if(userData == null){
+                    request.setAttribute("error_message","Email doesn't exist");
+                    dispatcher.forward(request, response);
+                }else if(userEmail.equals("")){
                     request.setAttribute("error_message", "Please Insert credentials! Try again");
                     dispatcher.forward(request, response);
-                }
-                else if(UserInputValidate.validEmail(userData.getEmail()) && userData.getPassword().equals(userPassword)){
+                }else if(UserInputValidate.validEmail(userData.getEmail()) && userData.getPassword().equals(userPassword)){
                     HttpSession session = request.getSession(true);
                     session.setAttribute("connection", cont);
                     session.setAttribute("person" , userData);
@@ -69,7 +71,7 @@ public class AuthenticateUser extends HttpServlet {
                 
                 
             }catch(Exception e){
-                out.println("<h1>Connection Error</h1>");
+                out.println("<h1>" + e.getMessage()+"</h1>");
                 e.printStackTrace();
             }
             

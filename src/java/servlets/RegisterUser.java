@@ -68,7 +68,7 @@ public class RegisterUser extends HttpServlet {
                     if(UserInputValidate.validEmail(userEmail) && UserInputValidate.validName(userName) && !inst.checkUserExist(userData)){
                         HttpSession session = request.getSession(true);
                         session.setAttribute("person" , userData);
-                        VerifyEmail verInst = new VerifyEmail(userData.getEmail());
+                        VerifyEmail verInst = new VerifyEmail(userData);
                         String verCode = verInst.sendVerificationEmail();
                         session.setAttribute("verificationCode", verCode);
                         session.setAttribute("person", userData);

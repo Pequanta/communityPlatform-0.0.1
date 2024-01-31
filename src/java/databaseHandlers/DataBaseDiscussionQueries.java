@@ -121,7 +121,7 @@ public class DataBaseDiscussionQueries {
     
     //The following piece of should be removed in time of deployement;
 
-    public boolean clearChat(){
+    public boolean clearData(){
         String clearChatStatement = "DELETE FROM message_table";
         int rows = 0;
         try{

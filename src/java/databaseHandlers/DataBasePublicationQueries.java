@@ -66,6 +66,7 @@ public class DataBasePublicationQueries {
     public ArrayList<String> allPublications(){
         String getAllPublications = "SELECT * FROM publication_table";
         ArrayList<String> publicationsFound = new ArrayList<>();
+        ArrayList<String> publicationsFoundCopy = new ArrayList<>();
         
         try{
             ResultSet contSet;
@@ -78,7 +79,10 @@ public class DataBasePublicationQueries {
                 publicationsFound.add(contSet.getString("user_email") + "," + contSet.getString("user_f_name") + " " + contSet.getString("user_l_name") + "," + resultCont.getInt("publication_id") + "," + resultCont.getString("publication_title"));
                 
             }
-            return publicationsFound;
+            for(int i = publicationsFound.size() - 1; i >= 0;i--){
+                publicationsFoundCopy.add(publicationsFound.get(i));
+            }
+            return publicationsFoundCopy;
         }catch(Exception e){
             e.printStackTrace();
         }
