@@ -29,7 +29,7 @@ public class DataBasePublicationQueries {
     }
     public boolean addPublication(Publication publication, String authorEmail){
         int rows = 0, userId = -1;
-        String getId = "SELECT * FROM community_user WHERE UPPER(user_email) = '" + authorEmail.toUpperCase() + "'";
+        String getId= "SELECT * FROM community_user WHERE UPPER(user_email) = '" + authorEmail.toUpperCase() + "'";
         
         
         try{
