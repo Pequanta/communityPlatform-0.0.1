@@ -1,14 +1,13 @@
 package importantUtils;
-
-import java.util.UUID;
+import dataContainers.UserInfo;
 import javax.mail.*;
 import java.util.*;
 import javax.mail.internet.*;
 public class VerifyEmail {
-    String userEmail;
     static String verCode;
-    public VerifyEmail(String email){
-        userEmail = email;
+    UserInfo user;
+    public VerifyEmail(UserInfo userData){
+        user = userData;
     }
     public String returnVerificationCode(){
         Random random= new Random();
@@ -21,23 +20,23 @@ public class VerifyEmail {
         return verificationCode;
     }
     public String sendVerificationEmail()throws Exception {
-        final String senderEmail = "Mikber24@gmail.com";
-        final String senderPassword = "esdokoalecmoowpq";
-        String receiverEmail = userEmail;
+        final String senderEmail = "aaitelectricalengineers@gmail.com";
+        final String senderPassword = "vxttfuojmdnfyrtg";
+        String receiverEmail = user.getEmail();
         String emailSubject="Verify your email address. Action Required";
         verCode = returnVerificationCode();
 
-        String emailBody="Dear [User],\n\nThank you for signing up for our service! We're excited to have you on board. Before we can activate your account, we need to verify your email address. This step is important to ensure the security of your account.To complete the verification process, please copy the verification code and paste it into the web browser:"
+        String emailBody="Dear " +user.getFname() +",\n\nThank you for signing up for our service! We're excited to have you on board. Before we can activate your account, we need to verify your email address. This step is important to ensure the security of your account.To complete the verification process, please copy the verification code and paste it into the web browser:"
                                     + "\r\n CODE: " + verCode +"\nIf you did not sign up for our service, please ignore this email. Your account will not be activated.\r\n"
                             + "\r\n"
                             + "Once you've verified your email address, you'll be able to access all the features of our service and start enjoying the benefits immediately.\r\n"
                             + "\r\n"
-                            + "If you have any questions or encounter any issues during the verification process, please don't hesitate to reach out to our support team at [Support Email] or [Support Phone Number]. We're here to assist you.\r\n"
+                            + "If you have any questions or encounter any issues during the verification process, please don't hesitate to reach out to our support team at aaitelectricalengineers@gmail.com. We're here to assist you.\r\n"
                             + "\r\n"
                             + "Thank you for choosing our service. We look forward to serving you!\r\n"
                             + "\r\n"
                             + "Best regards,\r\n"
-                            + "[Your Company Name] Team";
+                            + "AAiT Electrical Engineers Community";
 
             Properties props = new Properties();
             //props.put("mail.smtp.user",senderEmail);

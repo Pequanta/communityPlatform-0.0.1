@@ -36,6 +36,7 @@
                   </form>
               </header>
         </center>
+        <a href="publisher.jsp">Publish</a>
         <form action="DisplayPublicationServlet">
             <div class="publicationPage">
                 <% String content = (String) request.getAttribute("content");%>
