@@ -107,24 +107,6 @@ public class DataBaseInformationQueries {
         }
         return null;
     }
-    public UserInfo getUserId(String email){
-        String getUserIdStatement = "SELECT * FROM community_user WHERE UPPER(user_email) = '" + email.toUpperCase() + "'";
-        try{
-            resultCont = statementInst.executeQuery(getUserIdStatement);
-            if(resultCont.next()){
-                return new UserInfo(resultCont.getString("user_f_name"),
-                        resultCont.getString("user_l_name"),
-                        resultCont.getString("user_institute"),
-                        resultCont.getString("user_email"),
-                        resultCont.getString("user_password"),
-                        resultCont.getInt("user_education_level"));
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return null;
-        
-    }
 //         
 //    public static void main(String[] args){
 //        try{

@@ -74,7 +74,6 @@ public class RegisterUser extends HttpServlet {
                         session.setAttribute("person", userData);
                         response.sendRedirect("verificationPage.jsp");
                     }else if(inst.getUserInfoByEmail(userEmail) != null){
-                        
                         request.setAttribute("error_message", "Email already exists. Signin or use Other Email");
                         dispatcher.forward(request, response);
                     }else if(!UserInputValidate.validEmail(userEmail)){
