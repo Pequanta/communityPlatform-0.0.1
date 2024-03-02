@@ -10,6 +10,8 @@ package importantUtils;
  * @author quantap
  */
 
+//The class didn't act as it was intended . Need modification to handle the request and need to consider additional conditions
+
 import java.util.regex.*;
 
 //This class will be used by different user input acceptors as a way of processing user input
